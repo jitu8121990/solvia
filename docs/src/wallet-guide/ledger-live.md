@@ -9,7 +9,7 @@ with the [Ledger Live](https://www.ledger.com/ledger-live) software.
 
 Once the setup steps shown below are complete and the Solvia app is installed
 on your Nano device, users have several options of how to
-[use the Nano to interact with the Solvia Network](#interact-with-the-solana-network)
+[use the Nano to interact with the Solvia Network](#interact-with-the-solvia-network)
 
 ## Getting Started
 

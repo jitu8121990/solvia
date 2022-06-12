@@ -60,4 +60,4 @@ Solvia上的质押账户的运作方式也可能与您可能熟悉的其他权�
 
 #### 查看质押账户
 通过将帐户地址复制并粘贴到搜索栏中，可以在 Solvia 浏览器上查看质押帐户详细信息。
- - http://explorer.solana.com/accounts
+ - http://explorer.solvia.com/accounts

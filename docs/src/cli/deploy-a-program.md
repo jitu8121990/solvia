@@ -28,7 +28,7 @@ To deploy a program, you will need the location of the program's shared object
 (the program binary .so)
 
 ```bash
-solana program deploy <PROGRAM_FILEPATH>
+solvia program deploy <PROGRAM_FILEPATH>
 ```
 
 Successful deployment will return the program id of the deployed program, for
@@ -41,7 +41,7 @@ Program Id: 3KS2k14CmtnuVv2fvYcvdrNgC94Y11WETBpMUGgXyWZL
 Specify the keypair in the deploy command to deploy to a specific program id:
 
 ```bash
-solana program deploy --program-id <KEYPAIR_FILEPATH> <PROGRAM_FILEPATH>
+solvia program deploy --program-id <KEYPAIR_FILEPATH> <PROGRAM_FILEPATH>
 ```
 
 If the program id is not specified on the command line the tools will first look
@@ -62,7 +62,7 @@ generated automatically by the program build tools:
 To get information about a deployed program:
 
 ```bash
-solana program show <ACCOUNT_ADDRESS>
+solvia program show <ACCOUNT_ADDRESS>
 ```
 
 An example output looks like:
@@ -95,7 +95,7 @@ redeployments will be to the same program address.
 The command looks the same as the deployment command:
 
 ```bash
-solana program deploy <PROGRAM_FILEPATH>
+solvia program deploy <PROGRAM_FILEPATH>
 ```
 
 By default, programs are deployed to accounts that are twice the size of the
@@ -106,7 +106,7 @@ may fail. To avoid this, specify a `max_len` that is at least the size (in
 bytes) that the program is expected to become (plus some wiggle room).
 
 ```bash
-solana program deploy --max-len 200000 <PROGRAM_FILEPATH>
+solvia program deploy --max-len 200000 <PROGRAM_FILEPATH>
 ```
 
 Note that program accounts are required to be
@@ -127,21 +127,21 @@ needed to recover the generated intermediate buffer's keypair:
 ```
 ==================================================================================
 Recover the intermediate account's ephemeral keypair file with
-`solana-keygen recover` and the following 12-word seed phrase:
+`solvia-keygen recover` and the following 12-word seed phrase:
 ==================================================================================
 valley flat great hockey share token excess clever benefit traffic avocado athlete
 ==================================================================================
 To resume a deploy, pass the recovered keypair as
-the [BUFFER_SIGNER] to `solana program deploy` or `solana write-buffer'.
+the [BUFFER_SIGNER] to `solvia program deploy` or `solvia write-buffer'.
 Or to recover the account's lamports, pass it as the
-[BUFFER_ACCOUNT_ADDRESS] argument to `solana program drain`.
+[BUFFER_ACCOUNT_ADDRESS] argument to `solvia program drain`.
 ==================================================================================
 ```
 
 To recover the keypair:
 
 ```bash
-solana-keygen recover -o <KEYPAIR_PATH>
+solvia-keygen recover -o <KEYPAIR_PATH>
 ```
 
 When asked, enter the 12-word seed phrase.
@@ -149,7 +149,7 @@ When asked, enter the 12-word seed phrase.
 Then issue a new `deploy` command and specify the buffer:
 
 ```bash
-solana program deploy --buffer <KEYPAIR_PATH> <PROGRAM_FILEPATH>
+solvia program deploy --buffer <KEYPAIR_PATH> <PROGRAM_FILEPATH>
 ```
 
 ### Closing buffer accounts and reclaiming their lamports
@@ -163,43 +163,43 @@ The buffer account's authority must be present to close a buffer account, to
 list all the open buffer accounts that match the default authority:
 
 ```bash
-solana program show --buffers
+solvia program show --buffers
 ```
 
 To specify a different authority:
 
 ```bash
-solana program show --buffers --buffer-authority <AURTHORITY_ADRESS>
+solvia program show --buffers --buffer-authority <AURTHORITY_ADRESS>
 ```
 
 To close a single account:
 
 ```bash
-solana program close <BUFFER_ADDRESS>
+solvia program close <BUFFER_ADDRESS>
 ```
 
 To close a single account and specify a different authority than the default:
 
 ```bash
-solana program close <BUFFER_ADDRESS> --buffer-authority <KEYPAIR_FILEPATH>
+solvia program close <BUFFER_ADDRESS> --buffer-authority <KEYPAIR_FILEPATH>
 ```
 
 To close a single account and specify a different recipient than the default:
 
 ```bash
-solana program close <BUFFER_ADDRESS> --recipient <RECIPIENT_ADDRESS>
+solvia program close <BUFFER_ADDRESS> --recipient <RECIPIENT_ADDRESS>
 ```
 
 To close all the buffer accounts associated with the current authority:
 
 ```bash
-solana program close --buffers
+solvia program close --buffers
 ```
 
 To show all buffer accounts regardless of the authority
 
 ```bash
-solana program show --buffers --all
+solvia program show --buffers --all
 ```
 
 ### Set a program's upgrade authority
@@ -212,19 +212,19 @@ require an authority to be explicitly specified.
 The authority can be specified during deployment:
 
 ```bash
-solana program deploy --upgrade-authority <UPGRADE_AUTHORITY_SIGNER> <PROGRAM_FILEPATH>
+solvia program deploy --upgrade-authority <UPGRADE_AUTHORITY_SIGNER> <PROGRAM_FILEPATH>
 ```
 
 Or after deployment and using the default keypair as the current authority:
 
 ```bash
-solana program set-upgrade-authority <PROGRAM_ADDRESS> --new-upgrade-authority <NEW_UPGRADE_AUTHORITY>
+solvia program set-upgrade-authority <PROGRAM_ADDRESS> --new-upgrade-authority <NEW_UPGRADE_AUTHORITY>
 ```
 
 Or after deployment and specifying the current authority:
 
 ```bash
-solana program set-upgrade-authority <PROGRAM_ADDRESS> --upgrade-authority <UPGRADE_AUTHORITY_SIGNER> --new-upgrade-authority <NEW_UPGRADE_AUTHORITY>
+solvia program set-upgrade-authority <PROGRAM_ADDRESS> --upgrade-authority <UPGRADE_AUTHORITY_SIGNER> --new-upgrade-authority <NEW_UPGRADE_AUTHORITY>
 ```
 
 ### Immutable programs
@@ -233,13 +233,13 @@ A program can be marked immutable, which prevents all further redeployments, by
 specifying the `--final` flag during deployment:
 
 ```bash
-solana program deploy <PROGRAM_FILEPATH> --final
+solvia program deploy <PROGRAM_FILEPATH> --final
 ```
 
 Or anytime after:
 
 ```bash
-solana program set-upgrade-authority <PROGRAM_ADDRESS> --final
+solvia program set-upgrade-authority <PROGRAM_ADDRESS> --final
 ```
 
 ### Dumping a program to a file
@@ -247,7 +247,7 @@ solana program set-upgrade-authority <PROGRAM_ADDRESS> --final
 The deployed program may be dumped back to a local file:
 
 ```bash
-solana program dump <ACCOUNT_ADDRESS> <OUTPUT_FILEPATH>
+solvia program dump <ACCOUNT_ADDRESS> <OUTPUT_FILEPATH>
 ```
 
 The dumped file will be in the same as what was deployed, so in the case of a
@@ -259,7 +259,7 @@ known program binary. The original program file can be zero-extended, hashed,
 and compared to the hash of the dumped file.
 
 ```bash
-$ solana dump <ACCOUNT_ADDRESS> dump.so
+$ solvia dump <ACCOUNT_ADDRESS> dump.so
 $ cp original.so extended.so
 $ truncate -r dump.so extended.so
 $ sha256sum extended.so dump.so
@@ -273,13 +273,13 @@ like multi-entity governed programs where the governing members fist verify the
 intermediary buffer contents and then vote to allow an upgrade using it.
 
 ```bash
-solana program write-buffer <PROGRAM_FILEPATH>
+solvia program write-buffer <PROGRAM_FILEPATH>
 ```
 
 Buffer accounts support authorities like program accounts:
 
 ```bash
-solana program set-buffer-authority <BUFFER_ADDRESS> --new-upgrade-authority <NEW_UPGRADE_AUTHORITY>
+solvia program set-buffer-authority <BUFFER_ADDRESS> --new-upgrade-authority <NEW_UPGRADE_AUTHORITY>
 ```
 
 One exception is that buffer accounts cannot be marked immutable like program
@@ -289,7 +289,7 @@ The buffer account, once entirely written, can be passed to `deploy` to deploy
 the program:
 
 ```bash
-solana program deploy --program-id <PROGRAM_ADDRESS> --buffer <BUFFER_ADDRESS>
+solvia program deploy --program-id <PROGRAM_ADDRESS> --buffer <BUFFER_ADDRESS>
 ```
 
 Note, the buffer's authority must match the program's upgrade authority.

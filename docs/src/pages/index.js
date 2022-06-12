@@ -23,7 +23,7 @@ const features = [
   },
   {
     title: <>🏛 Create an SPL Token</>,
-    imageUrl: "https://spl.solana.com/token",
+    imageUrl: "https://spl.solvia.com/token",
     description: <>Launch your own SPL Token, Solvia's equivalent of ERC-20.</>,
   },
   {

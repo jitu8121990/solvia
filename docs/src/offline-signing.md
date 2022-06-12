@@ -7,7 +7,7 @@ process, separated from transaction creation and network broadcast. Examples
 include:
 
 - Collecting signatures from geographically disparate signers in a
-  [multi-signature scheme](https://spl.solana.com/token#multisig-usage)
+  [multi-signature scheme](https://spl.solvia.com/token#multisig-usage)
 - Signing transactions using an [airgapped](<https://en.wikipedia.org/wiki/Air_gap_(networking)>)
   signing device
 
@@ -18,14 +18,14 @@ transaction.
 
 At present, the following commands support offline signing:
 
-- [`create-stake-account`](cli/usage.md#solana-create-stake-account)
-- [`deactivate-stake`](cli/usage.md#solana-deactivate-stake)
-- [`delegate-stake`](cli/usage.md#solana-delegate-stake)
-- [`split-stake`](cli/usage.md#solana-split-stake)
-- [`stake-authorize`](cli/usage.md#solana-stake-authorize)
-- [`stake-set-lockup`](cli/usage.md#solana-stake-set-lockup)
-- [`transfer`](cli/usage.md#solana-transfer)
-- [`withdraw-stake`](cli/usage.md#solana-withdraw-stake)
+- [`create-stake-account`](cli/usage.md#solvia-create-stake-account)
+- [`deactivate-stake`](cli/usage.md#solvia-deactivate-stake)
+- [`delegate-stake`](cli/usage.md#solvia-delegate-stake)
+- [`split-stake`](cli/usage.md#solvia-split-stake)
+- [`stake-authorize`](cli/usage.md#solvia-stake-authorize)
+- [`stake-set-lockup`](cli/usage.md#solvia-stake-set-lockup)
+- [`transfer`](cli/usage.md#solvia-transfer)
+- [`withdraw-stake`](cli/usage.md#solvia-withdraw-stake)
 
 ## Signing Transactions Offline
 
@@ -46,7 +46,7 @@ To sign a transaction offline, pass the following arguments on the command line
 Command
 
 ```bash
-solana@offline$ solana pay --sign-only --blockhash 5Tx8F3jgSHx21CbtjwmdaKPLM5tWmreWAnPrbqHomSJF \
+solvia@offline$ solvia pay --sign-only --blockhash 5Tx8F3jgSHx21CbtjwmdaKPLM5tWmreWAnPrbqHomSJF \
     recipient-keypair.json 1
 ```
 
@@ -76,7 +76,7 @@ following arguments on the command line
 Command
 
 ```bash
-solana@online$ solana pay --blockhash 5Tx8F3jgSHx21CbtjwmdaKPLM5tWmreWAnPrbqHomSJF \
+solvia@online$ solvia pay --blockhash 5Tx8F3jgSHx21CbtjwmdaKPLM5tWmreWAnPrbqHomSJF \
     --signer FhtzLVsmcV7S5XqGD79ErgoseCLhZYmEZnz9kQg1Rp7j=4vC38p4bz7XyiXrk6HtaooUqwxTWKocf45cstASGtmrD398biNJnmTcUCVEojE7wVQvgdYbjHJqRFZPpzfCQpmUN
     recipient-keypair.json 1
 ```
@@ -99,7 +99,7 @@ output
 Command (Offline Session #1)
 
 ```text
-solana@offline1$ solana transfer Fdri24WUGtrCXZ55nXiewAj6RM18hRHPGAjZk3o6vBut 10 \
+solvia@offline1$ solvia transfer Fdri24WUGtrCXZ55nXiewAj6RM18hRHPGAjZk3o6vBut 10 \
     --blockhash 7ALDjLv56a8f6sH6upAZALQKkXyjAwwENH9GomyM8Dbc \
     --sign-only \
     --keypair fee_payer.json \
@@ -119,7 +119,7 @@ Absent Signers (Pubkey):
 Command (Offline Session #2)
 
 ```text
-solana@offline2$ solana transfer Fdri24WUGtrCXZ55nXiewAj6RM18hRHPGAjZk3o6vBut 10 \
+solvia@offline2$ solvia transfer Fdri24WUGtrCXZ55nXiewAj6RM18hRHPGAjZk3o6vBut 10 \
     --blockhash 7ALDjLv56a8f6sH6upAZALQKkXyjAwwENH9GomyM8Dbc \
     --sign-only \
     --keypair from.json \
@@ -139,7 +139,7 @@ Absent Signers (Pubkey):
 Command (Online Submission)
 
 ```text
-solana@online$ solana transfer Fdri24WUGtrCXZ55nXiewAj6RM18hRHPGAjZk3o6vBut 10 \
+solvia@online$ solvia transfer Fdri24WUGtrCXZ55nXiewAj6RM18hRHPGAjZk3o6vBut 10 \
     --blockhash 7ALDjLv56a8f6sH6upAZALQKkXyjAwwENH9GomyM8Dbc \
     --from 674RgFMgdqdRoVtMqSBg7mHFbrrNm1h1r721H1ZMquHL \
     --signer 674RgFMgdqdRoVtMqSBg7mHFbrrNm1h1r721H1ZMquHL=3vJtnba4dKQmEAieAekC1rJnPUndBcpvqRPRMoPWqhLEMCty2SdUxt2yvC1wQW6wVUa5putZMt6kdwCaTv8gk7sQ \

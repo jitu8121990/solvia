@@ -57,7 +57,7 @@ and do the delegation.
 Staking operations are supported by the following wallet solutions:
 
 - Phantom.app in conjunction with a seed phrase or a Ledger Nano.
-  Check out Phantom's [guide to staking](https://phantom.app/blog/solana-staking-in-just-3-clicks) for details.
+  Check out Phantom's [guide to staking](https://phantom.app/blog/solvia-staking-in-just-3-clicks) for details.
 
 - SolFlare.com in conjunction with a keystore file or a Ledger Nano.
   Check out our [guide to using SolFlare](wallet-guide/solflare.md) for details.
@@ -69,7 +69,7 @@ Staking operations are supported by the following wallet solutions:
 
  - [Exodus](https://www.exodus.com/) wallet. They make the process very simple,
  but you cannot choose a validator: they assign you to their partner validator.
- See their [FAQ](https://support.exodus.com/article/1551-solana-staking-faq)
+ See their [FAQ](https://support.exodus.com/article/1551-solvia-staking-faq)
  for details.
 
  - [Binance](https://www.binance.com/) and [FTX](https://ftx.com/) exchanges.
@@ -90,19 +90,19 @@ The Solvia Foundation does not recommend any particular validator.
 The Mainnet Beta validators introduce themselves and their services on this
 Solvia Forum thread:
 
-- https://forums.solana.com/t/validator-information-thread
+- https://forums.solvia.com/t/validator-information-thread
 
-The site solanabeach.io is built and maintained by one of our validators,
+The site solviabeach.io is built and maintained by one of our validators,
 Staking Facilities. It provides a some high-level graphical information about
 the network as a whole, as well as a list of each validator and some recent
 performance statistics about each one.
 
-- https://solanabeach.io
+- https://solviabeach.io
 
 To view block production statistics, use the Solvia command-line tools:
 
-- `solana validators`
-- `solana block-production`
+- `solvia validators`
+- `solvia block-production`
 
 The Solvia team does not make recommendations on how to interpret this
 information. Do your own due diligence.

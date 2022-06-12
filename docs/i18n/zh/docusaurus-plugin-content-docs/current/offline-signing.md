@@ -13,14 +13,14 @@ title: 离线交易签名
 
 当前，有以下命令支持离线签名：
 
-- [`创建质押账户`](cli/usage.md#solana-create-stake-account)
-- [`停用质押`](cli/usage.md#solana-deactivate-stake)
-- [`委托质押`](cli/usage.md#solana-delegate-stake)
-- [`拆分质押`](cli/usage.md#solana-split-stake)
-- [`质押授权`](cli/usage.md#solana-stake-authorize)
-- [`设置质押锁定`](cli/usage.md#solana-stake-set-lockup)
-- [`转账`](cli/usage.md#solana-transfer)
-- [`提现质押`](cli/usage.md#solana-withdraw-stake)
+- [`创建质押账户`](cli/usage.md#solvia-create-stake-account)
+- [`停用质押`](cli/usage.md#solvia-deactivate-stake)
+- [`委托质押`](cli/usage.md#solvia-delegate-stake)
+- [`拆分质押`](cli/usage.md#solvia-split-stake)
+- [`质押授权`](cli/usage.md#solvia-stake-authorize)
+- [`设置质押锁定`](cli/usage.md#solvia-stake-set-lockup)
+- [`转账`](cli/usage.md#solvia-transfer)
+- [`提现质押`](cli/usage.md#solvia-withdraw-stake)
 
 ## 离线签名交易
 
@@ -34,7 +34,7 @@ title: 离线交易签名
 命令
 
 ```bash
-solana@offline$ solana pay --sign-only --blockhash 5Tx8F3jgSHx21CbtjwmdaKPLM5tWmreWAnPrbqHomSJF \
+solvia@offline$ solvia pay --sign-only --blockhash 5Tx8F3jgSHx21CbtjwmdaKPLM5tWmreWAnPrbqHomSJF \
     recipient-keypair.json 1
 ```
 
@@ -61,7 +61,7 @@ Signers (Pubkey=Signature):
 命令
 
 ```bash
-solana@online$ solana pay --blockhash 5Tx8F3jgSHx21CbtjwmdaKPLM5tWmreWAnPrbqHomSJF \
+solvia@online$ solvia pay --blockhash 5Tx8F3jgSHx21CbtjwmdaKPLM5tWmreWAnPrbqHomSJF \
     --signer FhtzLVsmcV7S5XqGD79ErgoseCLhZYmEZnz9kQg1Rp7j=4vC38p4bz7XyiXrk6HtaooUqwxTWKocf45cstASGtmrD398biNJnmTcUCVEojE7wVQvgdYbjHJqRFZPpzfCQpmUN
     recipient-keypair.json 1
 ```
@@ -81,7 +81,7 @@ solana@online$ solana pay --blockhash 5Tx8F3jgSHx21CbtjwmdaKPLM5tWmreWAnPrbqHomS
 命令(离线会话 #1)
 
 ```text
-solana@offline1$ solana transfer Fdri24WUGtrCXZ55nXiewAj6RM18hRHPGAjZk3o6vBut 10 \
+solvia@offline1$ solvia transfer Fdri24WUGtrCXZ55nXiewAj6RM18hRHPGAjZk3o6vBut 10 \
     --blockhash 7ALDjLv56a8f6sH6upAZALQKkXyjAwwENH9GomyM8Dbc \
     --sign-only \
     --keypair fee_payer.json \
@@ -101,7 +101,7 @@ Absent Signers (Pubkey):
 命令(离线会话 #2)
 
 ```text
-solana@offline2$ solana transfer Fdri24WUGtrCXZ55nXiewAj6RM18hRHPGAjZk3o6vBut 10 \
+solvia@offline2$ solvia transfer Fdri24WUGtrCXZ55nXiewAj6RM18hRHPGAjZk3o6vBut 10 \
     --blockhash 7ALDjLv56a8f6sH6upAZALQKkXyjAwwENH9GomyM8Dbc \
     --sign-only \
     --keypair from.json \
@@ -121,7 +121,7 @@ Absent Signers (Pubkey):
 命令(在线提交)
 
 ```text
-solana@online$ solana transfer Fdri24WUGtrCXZ55nXiewAj6RM18hRHPGAjZk3o6vBut 10 \
+solvia@online$ solvia transfer Fdri24WUGtrCXZ55nXiewAj6RM18hRHPGAjZk3o6vBut 10 \
     --blockhash 7ALDjLv56a8f6sH6upAZALQKkXyjAwwENH9GomyM8Dbc \
     --from 674RgFMgdqdRoVtMqSBg7mHFbrrNm1h1r721H1ZMquHL \
     --signer 674RgFMgdqdRoVtMqSBg7mHFbrrNm1h1r721H1ZMquHL=3vJtnba4dKQmEAieAekC1rJnPUndBcpvqRPRMoPWqhLEMCty2SdUxt2yvC1wQW6wVUa5putZMt6kdwCaTv8gk7sQ \

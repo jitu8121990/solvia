@@ -8,7 +8,7 @@ account is needed if you plan to run a validator node on Solvia.
 ## Create a Vote Account
 
 A vote account can be created with the
-[create-vote-account](../cli/usage.md#solana-create-vote-account) command.
+[create-vote-account](../cli/usage.md#solvia-create-vote-account) command.
 The vote account can be configured when first created or after the validator is
 running. All aspects of the vote account can be changed except for the
 [vote account address](#vote-account-address), which is fixed for the lifetime
@@ -17,13 +17,13 @@ of the account.
 ### Configure an Existing Vote Account
 
 - To change the [validator identity](#validator-identity), use
-  [vote-update-validator](../cli/usage.md#solana-vote-update-validator).
+  [vote-update-validator](../cli/usage.md#solvia-vote-update-validator).
 - To change the [vote authority](#vote-authority), use
-  [vote-authorize-voter-checked](../cli/usage.md#solana-vote-authorize-voter-checked).
+  [vote-authorize-voter-checked](../cli/usage.md#solvia-vote-authorize-voter-checked).
 - To change the [authorized withdrawer](#authorized-withdrawer), use
-  [vote-authorize-withdrawer-checked](../cli/usage.md#solana-vote-authorize-withdrawer-checked).
+  [vote-authorize-withdrawer-checked](../cli/usage.md#solvia-vote-authorize-withdrawer-checked).
 - To change the [commission](#commission), use
-  [vote-update-commission](../cli/usage.md#solana-vote-update-commission).
+  [vote-update-commission](../cli/usage.md#solvia-vote-update-commission).
 
 ## Vote Account Structure
 
@@ -62,7 +62,7 @@ disk or file system becomes compromised or corrupted.
 
 The validator identity is required to be provided when a vote account is created.
 The validator identity can also be changed after an account is created by using
-the [vote-update-validator](../cli/usage.md#solana-vote-update-validator) command.
+the [vote-update-validator](../cli/usage.md#solvia-vote-update-validator) command.
 
 ### Vote Authority
 
@@ -84,13 +84,13 @@ different accounts.
 The vote authority can be set when the vote account is created. If it is not
 provided, the default behavior is to assign it the same as the validator identity.
 The vote authority can be changed later with the
-[vote-authorize-voter-checked](../cli/usage.md#solana-vote-authorize-voter-checked) command.
+[vote-authorize-voter-checked](../cli/usage.md#solvia-vote-authorize-voter-checked) command.
 
 The vote authority can be changed at most once per epoch. If the authority is
-changed with [vote-authorize-voter-checked](../cli/usage.md#solana-vote-authorize-voter-checked),
+changed with [vote-authorize-voter-checked](../cli/usage.md#solvia-vote-authorize-voter-checked),
 this will not take effect until the beginning of the next epoch.
 To support a smooth transition of the vote signing,
-`solana-validator` allows the `--authorized-voter` argument to be specified
+`solvia-validator` allows the `--authorized-voter` argument to be specified
 multiple times. This allows the validator process to keep voting successfully
 when the network reaches an epoch boundary at which the validator's vote
 authority account changes.
@@ -98,7 +98,7 @@ authority account changes.
 ### Authorized Withdrawer
 
 The _authorized withdrawer_ keypair is used to withdraw funds from a vote account
-using the [withdraw-from-vote-account](../cli/usage.md#solana-withdraw-from-vote-account)
+using the [withdraw-from-vote-account](../cli/usage.md#solvia-withdraw-from-vote-account)
 command. Any network rewards a validator earns are deposited into the vote
 account and are only retrievable by signing with the authorized withdrawer keypair.
 
@@ -117,7 +117,7 @@ not be set to a keypair that is the same as either the validator identity
 keypair or the vote authority keypair.
 
 The authorized withdrawer can be changed later with the
-[vote-authorize-withdrawer-checked](../cli/usage.md#solana-vote-authorize-withdrawer-checked)
+[vote-authorize-withdrawer-checked](../cli/usage.md#solvia-vote-authorize-withdrawer-checked)
 command.
 
 ### Commission
@@ -144,7 +144,7 @@ rewards deposited in the vote account, and none passed on to any delegated
 stake accounts.
 
 Commission can also be changed later with the
-[vote-update-commission](../cli/usage.md#solana-vote-update-commission) command.
+[vote-update-commission](../cli/usage.md#solvia-vote-update-commission) command.
 
 When setting the commission, only integer values in the set [0-100] are accepted.
 The integer represents the number of percentage points for the commission, so
@@ -161,9 +161,9 @@ You will need access to the _authorized withdrawer_ keypair for the vote account
 change the validator identity. The follow steps assume that
 `~/authorized_withdrawer.json` is that keypair.
 
-1. Create the new validator identity keypair, `solana-keygen new -o ~/new-validator-keypair.json`.
-2. Ensure that the new identity account has been funded, `solana transfer ~/new-validator-keypair.json 500`.
-3. Run `solana vote-update-validator ~/vote-account-keypair.json ~/new-validator-keypair.json ~/authorized_withdrawer.json`
+1. Create the new validator identity keypair, `solvia-keygen new -o ~/new-validator-keypair.json`.
+2. Ensure that the new identity account has been funded, `solvia transfer ~/new-validator-keypair.json 500`.
+3. Run `solvia vote-update-validator ~/vote-account-keypair.json ~/new-validator-keypair.json ~/authorized_withdrawer.json`
    to modify the validator identity in your vote account
 4. Restart your validator with the new identity keypair for the `--identity` argument
 
@@ -183,30 +183,30 @@ This temporary validator should be run for two full epochs. During this time it 
 * Receive the transaction fees and rent rewards for your old validator identity
 
 It is safe to stop this temporary validator when your old validator identity is
-no longer listed in the `solana leader-schedule` output.
+no longer listed in the `solvia leader-schedule` output.
 
 ### Vote Account Authorized Voter
 
 The _vote authority_ keypair may only be changed at epoch boundaries and
-requires some additional arguments to `solana-validator` for a seamless
+requires some additional arguments to `solvia-validator` for a seamless
 migration.
 
-1. Run `solana epoch-info`. If there is not much time remaining time in the
+1. Run `solvia epoch-info`. If there is not much time remaining time in the
    current epoch, consider waiting for the next epoch to allow your validator
    plenty of time to restart and catch up.
-2. Create the new vote authority keypair, `solana-keygen new -o ~/new-vote-authority.json`.
-3. Determine the current _vote authority_ keypair by running `solana vote-account ~/vote-account-keypair.json`. It may be validator's
+2. Create the new vote authority keypair, `solvia-keygen new -o ~/new-vote-authority.json`.
+3. Determine the current _vote authority_ keypair by running `solvia vote-account ~/vote-account-keypair.json`. It may be validator's
    identity account (the default) or some other keypair. The following steps
    assume that `~/validator-keypair.json` is that keypair.
-4. Run `solana vote-authorize-voter ~/vote-account-keypair.json ~/validator-keypair.json ~/new-vote-authority.json`.
+4. Run `solvia vote-authorize-voter ~/vote-account-keypair.json ~/validator-keypair.json ~/new-vote-authority.json`.
    The new vote authority is scheduled to become active starting at the next epoch.
-5. `solana-validator` now needs to be restarted with the old and new vote
+5. `solvia-validator` now needs to be restarted with the old and new vote
    authority keypairs, so that it can smoothly transition at the next epoch. Add
    the two arguments on restart: `--authorized-voter ~/validator-keypair.json --authorized-voter ~/new-vote-authority.json`
 6. After the cluster reaches the next epoch, remove the
    `--authorized-voter ~/validator-keypair.json` argument and restart
-   `solana-validator`, as the old vote authority keypair is no longer required.
+   `solvia-validator`, as the old vote authority keypair is no longer required.
 
 ### Vote Account Authorized Withdrawer
 
-No special handling is required. Use the `solana vote-authorize-withdrawer` command as needed.
+No special handling is required. Use the `solvia vote-authorize-withdrawer` command as needed.

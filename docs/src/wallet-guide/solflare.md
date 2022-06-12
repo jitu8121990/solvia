@@ -59,7 +59,7 @@ limitations in using the Nano._
 
 To use a Ledger Nano with SolFlare, first ensure you have
 [set up your Nano](ledger-live.md) and have [installed the latest version of
-the Solvia app](ledger-live.md#upgrade-to-the-latest-version-of-the-solana-app)
+the Solvia app](ledger-live.md#upgrade-to-the-latest-version-of-the-solvia-app)
 on your device.
 
 #### Select a Ledger address to access

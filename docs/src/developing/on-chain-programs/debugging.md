@@ -29,7 +29,7 @@ development it is helpful to focus on just the runtime and program logs and not
 the rest of the cluster logs. To focus in on program specific information the
 following log mask is recommended:
 
-`export RUST_LOG=solana_runtime::system_instruction_processor=trace,solana_runtime::message_processor=info,solana_bpf_loader=debug,solana_rbpf=debug`
+`export RUST_LOG=solvia_runtime::system_instruction_processor=trace,solvia_runtime::message_processor=info,solvia_bpf_loader=debug,solvia_rbpf=debug`
 
 Log messages coming directly from the program (not the runtime) will be
 displayed in the form:
@@ -105,6 +105,6 @@ The trace logs together with the [ELF dump](#elf-dump) can provide a lot of
 insight (though the traces produce a lot of information).
 
 To turn on BPF interpreter trace messages in a local cluster configure the
-`solana_rbpf` level in `RUST_LOG` to `trace`. For example:
+`solvia_rbpf` level in `RUST_LOG` to `trace`. For example:
 
-`export RUST_LOG=solana_rbpf=trace`
+`export RUST_LOG=solvia_rbpf=trace`

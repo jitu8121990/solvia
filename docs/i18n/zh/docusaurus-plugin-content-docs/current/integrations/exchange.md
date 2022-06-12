@@ -21,7 +21,7 @@ Solvia 节点需要较高的计算力来处理我们的快速区块和高 TPS �
 2. 启动验证节点时至少使用以下参数：
 
 ```bash
-solana-validator \
+solvia-validator \
   --ledger <LEDGER_PATH> \
   --entrypoint <CLUSTER_ENTRYPOINT> \
   --expected-genesis-hash <EXPECTED_GENESIS_HASH> \
@@ -35,9 +35,9 @@ solana-validator \
 
 自定义 `--ledger` 到您所需的账本存储位置， `--rpc-port` 到您想要显示的端口。
 
-`--entrypoint` and `--experted-genesis-hash` 参数都针对您正在加入的集群。 [主网 Beta 的当前参数](../clusters.md#example-solana-validator-command-line-2)
+`--entrypoint` and `--experted-genesis-hash` 参数都针对您正在加入的集群。 [主网 Beta 的当前参数](../clusters.md#example-solvia-validator-command-line-2)
 
-`--limit-ledger-size` 参数允许您指定保留节点的多少个账本 [shreds](../terminology.md#shred) 在磁盘上。 如果您没有配置该参数，验证节点将保留整个账本直到磁盘空间满了为止。  保持账本磁盘使用量的默认值小于 500GB。  如果需要，可以通过添加参数到 `--limit-ledger-size` 来增加或减少磁盘的使用。 查看 `solana-validator --help` 来配置 `--limit-ledger-size` 所使用的默认限制值。  关于选择一个普通限制值的更多信息请参看 [这里](https://github.com/solana-labs/solana/blob/583cec922b6107e0f85c7e14cb5e642bc7dfb340/core/src/ledger_cleanup_service.rs#L15-L26).
+`--limit-ledger-size` 参数允许您指定保留节点的多少个账本 [shreds](../terminology.md#shred) 在磁盘上。 如果您没有配置该参数，验证节点将保留整个账本直到磁盘空间满了为止。  保持账本磁盘使用量的默认值小于 500GB。  如果需要，可以通过添加参数到 `--limit-ledger-size` 来增加或减少磁盘的使用。 查看 `solvia-validator --help` 来配置 `--limit-ledger-size` 所使用的默认限制值。  关于选择一个普通限制值的更多信息请参看 [这里](https://github.com/solvia-labs/solvia/blob/583cec922b6107e0f85c7e14cb5e642bc7dfb340/core/src/ledger_cleanup_service.rs#L15-L26).
 
 指定一个或多个 `--trusted-validator` 参数可以保护您免遭恶意快照的攻击。 [更多关于使用可信验证程序启动的值](../running-validator/validator-start.md#trusted-validators)
 
@@ -50,10 +50,10 @@ solana-validator \
 
 我们建议将每个节点配置退出时自动重启，以确保尽可能少地丢失数据。 把 Solvia 软件运行为一个系统服务是很好的选择。
 
-对于监控，我们提供[`solana-watchtower`](https://github.com/solana-labs/solana/blob/master/watchtower/README.md)，它可以监视您的验证节点，并且通过 `solana-validator` 检测节点是否不健康。 它可以直接配置 Slack、Telegram 、Discord 或 Twillio 来提醒您。 详情请运行 `solana-watchtower --help`。
+对于监控，我们提供[`solvia-watchtower`](https://github.com/solvia-labs/solvia/blob/master/watchtower/README.md)，它可以监视您的验证节点，并且通过 `solvia-validator` 检测节点是否不健康。 它可以直接配置 Slack、Telegram 、Discord 或 Twillio 来提醒您。 详情请运行 `solvia-watchtower --help`。
 
 ```bash
-solana-watchtower --validator-identity <YOUR VALIDATOR IDENTITY>
+solvia-watchtower --validator-identity <YOUR VALIDATOR IDENTITY>
 ```
 
 #### 新软件发布公告
@@ -66,7 +66,7 @@ solana-watchtower --validator-identity <YOUR VALIDATOR IDENTITY>
 
 ### 账本持续性
 
-默认情况下，您的每个节点都通过可信验证节点提供的快照启动。 这个快照反映了区块链当前的状态，但不包含完整的历史帐本。 如果您的一个节点退出并且通过新的快照启动，那么该节点上的账本中可能会出现一段缺失。 为了防止该问题， 将 `--no-snapshot-fetch` 参数添加到您的 `solana-validator` 命令，来接收历史账本数据（而不是快照）。
+默认情况下，您的每个节点都通过可信验证节点提供的快照启动。 这个快照反映了区块链当前的状态，但不包含完整的历史帐本。 如果您的一个节点退出并且通过新的快照启动，那么该节点上的账本中可能会出现一段缺失。 为了防止该问题， 将 `--no-snapshot-fetch` 参数添加到您的 `solvia-validator` 命令，来接收历史账本数据（而不是快照）。
 
 不要在初次启动时通过 `--no-snapshot-fetch` 参数，因为它不可能追溯到创世区块去启动节点。  相反，您需要先启动快照，然后添加 `--no-snapshot-quetch` 参数来重启。
 
@@ -189,7 +189,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"jsonrpc": "2.0","id":1,"m
 
 ` 原先余额 ` 和 ` 交易后余额 ` 字段能让您跟踪余额每个账户中的变动，而无需解析整个交易。 他们将每个账户的最初和交易后余额分别列出在 [ lamports ](../terminology.md#lamport) 中，并索引到 `账户` 列表。 例如，您准备充值的地址是 ` 47Sbuv6jL7CViK9F2NMW51aQGhfdpUu7WNvKyH645Rfi `，它表示一笔 218099990000 - 207099990000 = 11000000000 lamports = 11 SOL 的交易。
 
-如果需要更多关于交易类型或其他细节的信息，您可以用二进制格式从 RPC 请求区块，然后使用 [Rust SDK](https://github.com/solana-labs/solana) 或 [Javascript SDK](https://github.com/solana-labs/solana-web3.js) 进行解析。
+如果需要更多关于交易类型或其他细节的信息，您可以用二进制格式从 RPC 请求区块，然后使用 [Rust SDK](https://github.com/solvia-labs/solvia) 或 [Javascript SDK](https://github.com/solvia-labs/solvia-web3.js) 进行解析。
 
 ### 地址历史
 
@@ -294,13 +294,13 @@ curl -X POST -H "Content-Type: application/json" -d '{"jsonrpc": "2.0","id":1,"m
 
 发送同步传输到 Solvia 集群可以让您轻松保证转账的成功并由集群确定最终性。
 
-Solvia的命令行工具提供了一个用于生成、提交和确认转账交易的简单命令， `solana transfer`。 默认情况下，该方法将等待并跟踪 stderr 的进度，直到集群确认了某笔交易。 如果交易失败，它将报告任何类型的交易错误。
+Solvia的命令行工具提供了一个用于生成、提交和确认转账交易的简单命令， `solvia transfer`。 默认情况下，该方法将等待并跟踪 stderr 的进度，直到集群确认了某笔交易。 如果交易失败，它将报告任何类型的交易错误。
 
 ```bash
-solana transfer <USER_ADDRESS> <AMOUNT> --keypair <KEYPAIR> --url http://localhost:8899
+solvia transfer <USER_ADDRESS> <AMOUNT> --keypair <KEYPAIR> --url http://localhost:8899
 ```
 
-[Solvia Javascript SDK](https://github.com/solana-labs/solana-web3.js) 为 JS 生态提供了类似的方法。 使用 `SystemProgram` 创造一笔转账交易，然后使用 `sendAndConfirmTransaction` 方法提交。
+[Solvia Javascript SDK](https://github.com/solvia-labs/solvia-web3.js) 为 JS 生态提供了类似的方法。 使用 `SystemProgram` 创造一笔转账交易，然后使用 `sendAndConfirmTransaction` 方法提交。
 
 ### 异步
 
@@ -311,13 +311,13 @@ solana transfer <USER_ADDRESS> <AMOUNT> --keypair <KEYPAIR> --url http://localho
 首先，使用 [`getFees` 端点](developing/clients/jsonrpc-api.md#getfees) 或 CLI 命令获取最近的区块哈希：
 
 ```bash
-solana fees --url http://localhost:8899
+solvia fees --url http://localhost:8899
 ```
 
 在命令行工具中，通过 `--no-wait` 参数发送异步传输，使用 `--blockhash` 参数包含您最近的区块哈希：
 
 ```bash
-solana transfer <USER_ADDRESS> <AMOUNT> --no-wait --blockhash <RECENT_BLOCKHASH> --keypair <KEYPAIR> --url http://localhost:8899
+solvia transfer <USER_ADDRESS> <AMOUNT> --no-wait --blockhash <RECENT_BLOCKHASH> --keypair <KEYPAIR> --url http://localhost:8899
 ```
 
 您也可以手动化生成、签名和序列化一笔交易，然后用 JSON-RPC [`发送交易` 端点](developing/clients/jsonrpc-api.md#sendtransaction) 将它关闭到某个集群。
@@ -360,7 +360,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0", "id":1, "
 
 #### 区块哈希过期
 
-当您使用 [`getFees` endpoint](developing/clients/jsonrpc-api.md#getfees) 或 `solana fees` 请求您提款交易最近的区块哈希，响应将包括 `lastValidSlot`，有效区块哈希的最后一个插槽。 您可以使用 [`getSlot` query](developing/clients/jsonrpc-api.md#getslot) 检查集群插槽；一旦集群槽大于`lastValidSlot`，那么使用该区块哈希的提现交易永远不会成功。
+当您使用 [`getFees` endpoint](developing/clients/jsonrpc-api.md#getfees) 或 `solvia fees` 请求您提款交易最近的区块哈希，响应将包括 `lastValidSlot`，有效区块哈希的最后一个插槽。 您可以使用 [`getSlot` query](developing/clients/jsonrpc-api.md#getslot) 检查集群插槽；一旦集群槽大于`lastValidSlot`，那么使用该区块哈希的提现交易永远不会成功。
 
 您也可以通过发送一个以区块哈希作为参数 [`getFeeCalculatorForBlockhash`](developing/clients/jsonrpc-api.md#getfeecalculatorforblockhash) 的请求，来再次确认某个区块哈希是否仍然有效。 如果响应值为空，那么该区块哈希已经过期，提现请求就一定不会成功。
 
@@ -429,7 +429,7 @@ public class PubkeyValidator
 
 ## 支持 SPL 代币标准
 
-[SPL 代币](https://spl.solana.com/token) 是在 Solvia 区块链上创建和交易包装/合成代币的标准。
+[SPL 代币](https://spl.solvia.com/token) 是在 Solvia 区块链上创建和交易包装/合成代币的标准。
 
 SPL 代币的工作流程类似于原生 SOL 代币，但本节将讨论它们的几个不同之处。
 
@@ -484,7 +484,7 @@ Signature: 4JsqZEPra2eDTHtHpB4FMWSfk3UgcCVmkKkP7zESZeMrKmFFkDkNd91pKP3vPVVZZPiu5
 
 或者创建指定密钥对的 SPL 代币账户：
 ```
-$ solana-keygen new -o token-account.json
+$ solvia-keygen new -o token-account.json
 $ spl-token create-account AkUFCWTXb3w9nY2n6SFJvBV6VwvFUCe4KBMCcgLsa2ir token-account.json
 Creating account 6VzWGL51jLebvnDifvcuEDec17sK6Wupi4gYhm5RzfkV
 Signature: 4JsqZEPra2eDTHtHpB4FMWSfk3UgcCVmkKkP7zESZeMrKmFFkDkNd91pKP3vPVVZZPiu5XxyJwS73Vi5WsZL88D7
@@ -499,7 +499,7 @@ spl-token balance <TOKEN_ACCOUNT_ADDRESS>
 
 #### 示例：
 ```
-$ solana balance 6VzWGL51jLebvnDifvcuEDec17sK6Wupi4gYhm5RzfkV
+$ solvia balance 6VzWGL51jLebvnDifvcuEDec17sK6Wupi4gYhm5RzfkV
 0
 ```
 
@@ -526,9 +526,9 @@ $ spl-token transfer 6B199xxzw3PkAm25hGJpjj3Wj3WNYNHzDAnt1tEqg5BN 1 6VzWGL51jLeb
 ### 充值
 因为每个 `(user, mint)` 对需要在链上有一个单独的帐户，所以建议交易所提前创建批量代币帐户，并分配给各个用户。 这些账户都由交易所账号密钥所拥有。
 
-存款交易的监控应遵循上面描述的 [block polling](#poll-for-blocks) 方法。 每个新区块应该扫描获得铸造 SPL 代币的成功交易 [Transfer](https://github.com/solana-labs/solana-program-library/blob/096d3d4da51a8f63db5160b126ebc56b26346fc8/token/program/src/instruction.rs#L92) 或 [Transfer2](https://github.com/solana-labs/solana-program-library/blob/096d3d4da51a8f63db5160b126ebc56b26346fc8/token/program/src/instruction.rs#L252) 指令来引用用户帐户，然后查询 [代币账户余额](developing/clients/jsonrpc-api.md#gettokenaccountbalance) 更新。
+存款交易的监控应遵循上面描述的 [block polling](#poll-for-blocks) 方法。 每个新区块应该扫描获得铸造 SPL 代币的成功交易 [Transfer](https://github.com/solvia-labs/solvia-program-library/blob/096d3d4da51a8f63db5160b126ebc56b26346fc8/token/program/src/instruction.rs#L92) 或 [Transfer2](https://github.com/solvia-labs/solvia-program-library/blob/096d3d4da51a8f63db5160b126ebc56b26346fc8/token/program/src/instruction.rs#L252) 指令来引用用户帐户，然后查询 [代币账户余额](developing/clients/jsonrpc-api.md#gettokenaccountbalance) 更新。
 
-[Considerations](https://github.com/solana-labs/solana/issues/12318) 正在扩展 `preBalance`和`postBalance` 交易状态元数据字段，来把 SPL代币余额转移包括进去。
+[Considerations](https://github.com/solvia-labs/solvia/issues/12318) 正在扩展 `preBalance`和`postBalance` 交易状态元数据字段，来把 SPL代币余额转移包括进去。
 
 ### 提现
 用户提供的提现地址应该是和普通 SOL 提款地址相同。
@@ -545,8 +545,8 @@ $ spl-token transfer --fund-recipient <exchange token account> <withdrawal amoun
 ### 其他考虑因素
 
 #### 冻结权限
-出于法规合规性原因，SPL 代币发行实体可以为与铸造相关联的所有帐户选择保留“冻结权限”。  这允许他们按照需要将一个给定帐户的资产 [冻结](https://spl.solana.com/token#freezing-accounts)，直到解冻以后才能使用。 如果开放该功能，冻结权限的公钥将在 SPL 代币的铸造账户中注册。
+出于法规合规性原因，SPL 代币发行实体可以为与铸造相关联的所有帐户选择保留“冻结权限”。  这允许他们按照需要将一个给定帐户的资产 [冻结](https://spl.solvia.com/token#freezing-accounts)，直到解冻以后才能使用。 如果开放该功能，冻结权限的公钥将在 SPL 代币的铸造账户中注册。
 
 ## 测试集成
 
-请务必先在 Solvia devnet 和 testnet [clusters](../clusters.md) 测试完整的工作流，然后再迁移到 mainnet-beta 上。 Devnet 是最开放和最灵活、最理想的初始开发方式，而 testnet 提供了更现实的集群配置。 Devnet 和 testnet 都有一个水龙头，您可以通过运行 `solana airdrop 10` 获取一些用来开发和测试的 devnet 或 testnet 的 SOL 代币。
+请务必先在 Solvia devnet 和 testnet [clusters](../clusters.md) 测试完整的工作流，然后再迁移到 mainnet-beta 上。 Devnet 是最开放和最灵活、最理想的初始开发方式，而 testnet 提供了更现实的集群配置。 Devnet 和 testnet 都有一个水龙头，您可以通过运行 `solvia airdrop 10` 获取一些用来开发和测试的 devnet 或 testnet 的 SOL 代币。

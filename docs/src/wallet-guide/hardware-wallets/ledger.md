@@ -4,7 +4,7 @@ title: Ledger Nano
 
 This page describes how to use a Ledger Nano S or Nano X to interact with Solvia
 using the command line tools. To see other solutions to interact with Solvia with
-your Nano, [click here](../ledger-live.md#interact-with-the-solana-network).
+your Nano, [click here](../ledger-live.md#interact-with-the-solvia-network).
 
 ## Before You Begin
 
@@ -23,7 +23,7 @@ your Nano, [click here](../ledger-live.md#interact-with-the-solana-network).
 On your computer, run:
 
 ```bash
-solana-keygen pubkey usb://ledger
+solvia-keygen pubkey usb://ledger
 ```
 
 This confirms your Ledger device is connected properly and in the correct state
@@ -38,7 +38,7 @@ using the wallet ID to use a specific Ledger, see
 ### View your Wallet Addresses
 
 Your Nano supports an arbitrary number of valid wallet addresses and signers.
-To view any address, use the `solana-keygen pubkey` command, as shown below,
+To view any address, use the `solvia-keygen pubkey` command, as shown below,
 followed by a valid [keypair URL](../hardware-wallets.md#specify-a-keypair-url).
 
 Multiple wallet addresses can be useful if you want to transfer tokens between
@@ -49,10 +49,10 @@ All of the following commands will display different addresses, associated with
 the keypair path given. Try them out!
 
 ```bash
-solana-keygen pubkey usb://ledger
-solana-keygen pubkey usb://ledger?key=0
-solana-keygen pubkey usb://ledger?key=1
-solana-keygen pubkey usb://ledger?key=2
+solvia-keygen pubkey usb://ledger
+solvia-keygen pubkey usb://ledger?key=0
+solvia-keygen pubkey usb://ledger?key=1
+solvia-keygen pubkey usb://ledger?key=2
 ```
 
 - NOTE: keypair url parameters are ignored in **zsh**
@@ -70,7 +70,7 @@ easy-to-remember path might be to use the address at `key=0`. View this address
 with:
 
 ```bash
-solana-keygen pubkey usb://ledger?key=0
+solvia-keygen pubkey usb://ledger?key=0
 ```
 
 Now you have a wallet address (or multiple addresses), you can share any of
@@ -80,21 +80,21 @@ associated keypair URL as the signer for transactions from that address.
 ### View your Balance
 
 To view the balance of any account, regardless of which wallet it uses, use the
-`solana balance` command:
+`solvia balance` command:
 
 ```bash
-solana balance SOME_WALLET_ADDRESS
+solvia balance SOME_WALLET_ADDRESS
 ```
 
 For example, if your address is `7cvkjYAkUYs4W8XcXsca7cBrEGFeSUjeZmKoNBvEwyri`,
 then enter the following command to view the balance:
 
 ```bash
-solana balance 7cvkjYAkUYs4W8XcXsca7cBrEGFeSUjeZmKoNBvEwyri
+solvia balance 7cvkjYAkUYs4W8XcXsca7cBrEGFeSUjeZmKoNBvEwyri
 ```
 
 You can also view the balance of any account address on the Accounts tab in the
-[Explorer](https://explorer.solana.com/accounts)
+[Explorer](https://explorer.solvia.com/accounts)
 and paste the address in the box to view the balance in you web browser.
 
 Note: Any address with a balance of 0 SOL, such as a newly created one on your
@@ -110,13 +110,13 @@ used to derive the address. To do this, make sure your Nano is plugged in,
 unlocked with the PIN, Ledger Live is not running, and the Solvia App is open
 on the device, showing "Application is Ready".
 
-The `solana transfer` command is used to specify to which address to send tokens,
+The `solvia transfer` command is used to specify to which address to send tokens,
 how many tokens to send, and uses the `--keypair` argument to specify which
 keypair is sending the tokens, which will sign the transaction, and the balance
 from the associated address will decrease.
 
 ```bash
-solana transfer RECIPIENT_ADDRESS AMOUNT --keypair KEYPAIR_URL_OF_SENDER
+solvia transfer RECIPIENT_ADDRESS AMOUNT --keypair KEYPAIR_URL_OF_SENDER
 ```
 
 Below is a full example. First, an address is viewed at a certain keypair URL.
@@ -129,13 +129,13 @@ both buttons on the "Approve" screen, otherwise push both buttons on the "Reject
 screen.
 
 ```bash
-~$ solana-keygen pubkey usb://ledger?key=42
+~$ solvia-keygen pubkey usb://ledger?key=42
 CjeqzArkZt6xwdnZ9NZSf8D1CNJN1rjeFiyd8q7iLWAV
 
-~$ solana balance CjeqzArkZt6xwdnZ9NZSf8D1CNJN1rjeFiyd8q7iLWAV
+~$ solvia balance CjeqzArkZt6xwdnZ9NZSf8D1CNJN1rjeFiyd8q7iLWAV
 1.000005 SOL
 
-~$ solana transfer 7cvkjYAkUYs4W8XcXsca7cBrEGFeSUjeZmKoNBvEwyri 1 --keypair usb://ledger?key=42
+~$ solvia transfer 7cvkjYAkUYs4W8XcXsca7cBrEGFeSUjeZmKoNBvEwyri 1 --keypair usb://ledger?key=42
 Waiting for your approval on Ledger hardware wallet usb://ledger/2JT2Xvy6T8hSmT8g6WdeDbHUgoeGdj6bE2VueCZUJmyN
 ✅ Approved
 
@@ -147,7 +147,7 @@ transaction signature, and wait for the maximum number of confirmations (32)
 before returning. This only takes a few seconds, and then the transaction is
 finalized on the Solvia network. You can view details of this or any other
 transaction by going to the Transaction tab in the
-[Explorer](https://explorer.solana.com/transactions)
+[Explorer](https://explorer.solvia.com/transactions)
 and paste in the transaction signature.
 
 ## Advanced Operations
@@ -166,7 +166,7 @@ connecting a Nano to USB, unlock it with your pin, and running the
 following command:
 
 ```text
-solana resolve-signer usb://ledger?key=0/0
+solvia resolve-signer usb://ledger?key=0/0
 ```
 
 You will see output similar to:
@@ -179,7 +179,7 @@ but where `BsNsvfXqQTtJnagwFWdBS7FBXgnsK8VZ5CmuznN85swK` is your `WALLET_ID`.
 
 With your fully qualified URL, you can connect multiple hardware wallets to
 the same computer and uniquely identify a keypair from any of them.
-Use the output from the `resolve-signer` command anywhere a `solana` command
+Use the output from the `resolve-signer` command anywhere a `solvia` command
 expects a `<KEYPAIR>` entry to use that resolved path as the signer for that
 part of the given transaction.
 
@@ -206,7 +206,7 @@ character, you can disable it explictly with a backslash in your keypair URLs.
 For example:
 
 ```bash
-solana-keygen pubkey usb://ledger\?key=0
+solvia-keygen pubkey usb://ledger\?key=0
 ```
 
 ## Support

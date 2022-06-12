@@ -8,8 +8,8 @@ Solvia维护着几个不同用途的集群。
 
 浏览器：
 
-- [http://explorer.solana.com/](https://explorer.solana.com/)。
-- [http://solanabeach.io/](http://solanabeach.io/).
+- [http://explorer.solvia.com/](https://explorer.solvia.com/)。
+- [http://solviabeach.io/](http://solviabeach.io/).
 
 ## Devnet（开发者网络）
 
@@ -21,23 +21,23 @@ Solvia维护着几个不同用途的集群。
   - Devnet包含用于空投的代币龙头，用于应用程序测试
   - Devnet可能会重置账本
   - Devnet通常运行比Mainnet Beta更新的软件版本
-- Devnet的八卦入口点：`entrypoint.devnet.solana.com：8001`
+- Devnet的八卦入口点：`entrypoint.devnet.solvia.com：8001`
 - Devnet的指标环境变量：
 ```bash
-export SOLANA_METRICS_CONFIG="host=https://metrics.solana.com:8086,db=devnet,u=scratch_writer,p=topsecret"
+export solvia_METRICS_CONFIG="host=https://metrics.solvia.com:8086,db=devnet,u=scratch_writer,p=topsecret"
 ```
-- Devnet RPC URL：`https://api.devnet.solana.com`
+- Devnet RPC URL：`https://api.devnet.solvia.com`
 
-##### 示例 `solana` 命令行配置
+##### 示例 `solvia` 命令行配置
 
 ```bash
-solana config set --url https://api.devnet.solana.com
+solvia config set --url https://api.devnet.solvia.com
 ```
 
-##### 示例 `solana-validator` 命令行
+##### 示例 `solvia-validator` 命令行
 
 ```bash
-$ solana-validator \
+$ solvia-validator \
     --identity ~/validator-keypair.json \
     --vote-account ~/vote-account-keypair.json \
     --trusted-validator dv1LfzJvDF7S1fBKpFgKoKXK5yoSosmkAdfbxBo1GqJ \
@@ -45,7 +45,7 @@ $ solana-validator \
     --ledger ~/validator-ledger \
     --rpc-port 8899 \
     --dynamic-port-range 8000-8010 \
-    --entrypoint entrypoint.devnet.solana.com:8001 \
+    --entrypoint entrypoint.devnet.solvia.com:8001 \
     --expected-genesis-hash EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG \
     --wal-recovery-mode skip_any_corrupted_record \
     --limit-ledger-size
@@ -60,23 +60,23 @@ $ solana-validator \
 - Testnet可能会重置账本。
 - Testnet包括用于空投的代币水龙头，用于应用程序测试
 - Testnet通常运行比Devnet和Mainnet Beta都更新的软件版本
-- 测试网 Gossip 入口： `entrypoint.testnet.solana.com:8001`
+- 测试网 Gossip 入口： `entrypoint.testnet.solvia.com:8001`
 - Testnet的指标环境变量：
 ```bash
-export SOLANA_METRICS_CONFIG="host=https://metrics.solana.com:8086,db=tds,u=testnet_write,p=c4fa841aa918bf8274e3e2a44d77568d9861b3ea"
+export solvia_METRICS_CONFIG="host=https://metrics.solvia.com:8086,db=tds,u=testnet_write,p=c4fa841aa918bf8274e3e2a44d77568d9861b3ea"
 ```
-- Testnet 的 RPC URL: `https://api.testnet.solana.com`
+- Testnet 的 RPC URL: `https://api.testnet.solvia.com`
 
-##### 示例 `solana` 命令行配置
+##### 示例 `solvia` 命令行配置
 
 ```bash
-solana config set --url https://api.testnet.solana.com
+solvia config set --url https://api.testnet.solvia.com
 ```
 
-##### 示例 `solana-validator` 命令行
+##### 示例 `solvia-validator` 命令行
 
 ```bash
-$ solana-validator \
+$ solvia-validator \
     --identity ~/validator-keypair.json \
     --vote-account ~/vote-account-keypair.json \
     --trusted-validator 5D1fNXzvv5NjV1ysLjirC4WY92RNsVH18vjmcszZd8on \
@@ -87,7 +87,7 @@ $ solana-validator \
     --ledger ~/validator-ledger \
     --rpc-port 8899 \
     --dynamic-port-range 8000-8010 \
-    --entrypoint entrypoint.testnet.solana.com:8001 \
+    --entrypoint entrypoint.testnet.solvia.com:8001 \
     --expected-genesis-hash 4uhcVJyU9pJkvQyS88uRDiswHXSCkY3zQawwpjk2NsNY \
     --wal-recovery-mode skip_any_corrupted_record \
     --limit-ledger-size
@@ -95,7 +95,7 @@ $ solana-validator \
 
 `--trusted-validator` 的身份是：
 
-- `5D1fNXzv5NjV1ysLjirC4WY92RNsVH18vjmcszZd8on` - testnet.solana.com (Solvia)
+- `5D1fNXzv5NjV1ysLjirC4WY92RNsVH18vjmcszZd8on` - testnet.solvia.com (Solvia)
 - `ta1Uvfb7W5BRPrdGnhP9RmeCKzBySGM1hTE4rBRy6T` - Break RPC 节点 (Solvia)
 - `Ft5fbkqNa76vnsjYNwjDZUXoTWpP7VYm3mtsaQckQADN` - Certus One
 - `9QxCLckBiJc783jnMvXZubK4wH86Eqqvashtrwvcsgkv` - Algo|Stake
@@ -107,23 +107,23 @@ $ solana-validator \
 - 在Mainnet Beta上发行的代币是**真实的**SOL
 - 如果您通过我们的硬币清单拍卖等方式支付了购买/发行代币的费用，则这些代币将在Mainnet Beta上转移。
   - 注意：如果您使用的是非命令行钱包，例如集群[Solflare](wallet-guide/solflare.md)，则该钱包将始终连接到Mainnet Beta。
-- Mainnet Beta 的 Gossip 入口： `entrypoint.mainnet-beta.solana.com:8001`
+- Mainnet Beta 的 Gossip 入口： `entrypoint.mainnet-beta.solvia.com:8001`
 - Mainnet Beta的指标环境变量：
 ```bash
-export SOLANA_METRICS_CONFIG="host=https://metrics.solana.com:8086,db=mainnet-beta,u=mainnet-beta_write,p=password"
+export solvia_METRICS_CONFIG="host=https://metrics.solvia.com:8086,db=mainnet-beta,u=mainnet-beta_write,p=password"
 ```
-- Mainnet Beta 的 RPC URL： `https://api.mainnet-beta.solana.com`
+- Mainnet Beta 的 RPC URL： `https://api.mainnet-beta.solvia.com`
 
-##### 示例 `solana` 命令行配置
+##### 示例 `solvia` 命令行配置
 
 ```bash
-solana config set --url https://api.mainnet-beta.solana.com
+solvia config set --url https://api.mainnet-beta.solvia.com
 ```
 
-##### 示例 `solana-validator` 命令行
+##### 示例 `solvia-validator` 命令行
 
 ```bash
-$ solana-validator \
+$ solvia-validator \
     --identity ~/validator-keypair.json \
     --vote-account ~/vote-account-keypair.json \
     --trusted-validator 7Np41oeYqPefeNQEHSv1UDhYrehxin3NStELsSKCT4K2 \
@@ -135,11 +135,11 @@ $ solana-validator \
     --rpc-port 8899 \
     --private-rpc \
     --dynamic-port-range 8000-8010 \
-    --entrypoint entrypoint.mainnet-beta.solana.com:8001 \
-    --entrypoint entrypoint2.mainnet-beta.solana.com:8001 \
-    --entrypoint entrypoint3.mainnet-beta.solana.com:8001 \
-    --entrypoint entrypoint4.mainnet-beta.solana.com:8001 \
-    --entrypoint entrypoint5.mainnet-beta.solana.com:8001 \
+    --entrypoint entrypoint.mainnet-beta.solvia.com:8001 \
+    --entrypoint entrypoint2.mainnet-beta.solvia.com:8001 \
+    --entrypoint entrypoint3.mainnet-beta.solvia.com:8001 \
+    --entrypoint entrypoint4.mainnet-beta.solvia.com:8001 \
+    --entrypoint entrypoint5.mainnet-beta.solvia.com:8001 \
     --expected-genesis-hash 5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d \
     --wal-recovery-mode skip_any_corrupted_record \
     --limit-ledger-size

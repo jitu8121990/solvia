@@ -31,7 +31,7 @@ title: SolFlare 网页钱包
 *注意：请查看目前在 Nano中出现的 [已知问题](ledger-live.md#known-issues)。*
 
 #### 初始设备设置
-要通过 SolFlare 配合使用 Ledger Nano，首先确认您已经在设备上 [设置了您的 Nano](ledger-live.md) 并安装了 [ 最新版本的 Solvia 应用程序](ledger-live.md#upgrade-to-the-latest-version-of-the-solana-app)。
+要通过 SolFlare 配合使用 Ledger Nano，首先确认您已经在设备上 [设置了您的 Nano](ledger-live.md) 并安装了 [ 最新版本的 Solvia 应用程序](ledger-live.md#upgrade-to-the-latest-version-of-the-solvia-app)。
 
 #### 选择一个访问账号地址
 插入你的 Nano 并打开 Solvia 应用，这时候设备屏幕显示"应用准备就绪"。

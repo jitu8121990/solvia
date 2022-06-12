@@ -2,7 +2,7 @@
 title: Inflation Schedule
 ---
 
-**Subject to change. Follow most recent economic discussions in the Solvia forums: https://forums.solana.com**
+**Subject to change. Follow most recent economic discussions in the Solvia forums: https://forums.solvia.com**
 
 Validator-clients have two functional roles in the Solvia network:
 

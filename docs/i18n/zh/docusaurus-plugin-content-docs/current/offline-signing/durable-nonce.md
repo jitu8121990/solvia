@@ -26,8 +26,8 @@ title: 持久交易随机数（Nonces）
 - 命令
 
 ```bash
-solana-keygen new -o nonce-keypair.json
-solana create-nonce-account nonce-keypair.json 1
+solvia-keygen new -o nonce-keypair.json
+solvia create-nonce-account nonce-keypair.json 1
 ```
 
 - 输出
@@ -38,7 +38,7 @@ solana create-nonce-account nonce-keypair.json 1
 
 > 要保持密钥对完全离线，请使用 [纸钱包](wallet-guide/paper-wallet.md) 密钥生成 [指令](wallet-guide/paper-wallet.md#seed-phrase-generation)
 
-> [完整使用文档](../cli/usage.md#solana-create-nonce-account)
+> [完整使用文档](../cli/usage.md#solvia-create-nonce-account)
 
 ### 查询存储Nonce值
 
@@ -47,7 +47,7 @@ solana create-nonce-account nonce-keypair.json 1
 - 命令
 
 ```bash
-solana nonce none-non-keypair.json
+solvia nonce none-non-keypair.json
 ```
 
 - 输出
@@ -56,7 +56,7 @@ solana nonce none-non-keypair.json
 8GRipryfxcsxN8mAGjy8zbFo9ezaUsh47TsPzmZbuytU
 ```
 
-> [完整使用文档](../cli/usage.md#solana-get-nonce)
+> [完整使用文档](../cli/usage.md#solvia-get-nonce)
 
 ### 提升存储Nonce值
 
@@ -65,7 +65,7 @@ solana nonce none-non-keypair.json
 - 命令
 
 ```bash
-solana new-nonce none-non-keypair.json
+solvia new-nonce none-non-keypair.json
 ```
 
 - 输出
@@ -74,7 +74,7 @@ solana new-nonce none-non-keypair.json
 44jYe1yPKrjuYDmoFTdgPjg8LFpYyh1PFKJqm5SC1PiSyAL8iw1bhadcAX1SL7KDmREEkmHpYvreKoNv6fZgfvUK
 ```
 
-> [完整使用文档](../cli/usage.md#solana-new-nonce)
+> [完整使用文档](../cli/usage.md#solvia-new-nonce)
 
 ### 显示Nonce账户
 
@@ -83,7 +83,7 @@ solana new-nonce none-non-keypair.json
 - 命令
 
 ```bash
-solana non-account non-ceypair.json
+solvia non-account non-ceypair.json
 ```
 
 - 输出
@@ -94,7 +94,7 @@ minimum balance required: 0.00136416 SOL
 nonce: DZar6t2EaCFQTbUP4DHKwZ1wT8gCPW2aRfkVWhydkBvS
 ```
 
-> [完整使用文档](../cli/usage.md#solana-nonce-account)
+> [完整使用文档](../cli/usage.md#solvia-nonce-account)
 
 ### 从Nonce帐号提取资产
 
@@ -103,7 +103,7 @@ nonce: DZar6t2EaCFQTbUP4DHKwZ1wT8gCPW2aRfkVWhydkBvS
 - 命令
 
 ```bash
-solana withdraw-from-nonce-account nonce-keypair.json ~/.config/solana/id.json 0.5
+solvia withdraw-from-nonce-account nonce-keypair.json ~/.config/solvia/id.json 0.5
 ```
 
 - 输出
@@ -114,7 +114,7 @@ solana withdraw-from-nonce-account nonce-keypair.json ~/.config/solana/id.json 0
 
 > 通过提取全部余额关闭nonce账户
 
-> [完整使用文档](../cli/usage.md#solana-withdraw-from-nonce-account)
+> [完整使用文档](../cli/usage.md#solvia-withdraw-from-nonce-account)
 
 ### 为Nonce账户分配新的授权
 
@@ -123,7 +123,7 @@ solana withdraw-from-nonce-account nonce-keypair.json ~/.config/solana/id.json 0
 - 命令
 
 ```bash
-solana authorize-non-account non-keypair.json nonce-authority.json
+solvia authorize-non-account non-keypair.json nonce-authority.json
 ```
 
 - 输出
@@ -132,7 +132,7 @@ solana authorize-non-account non-keypair.json nonce-authority.json
 3F9cg4zN9wHxLGx4c3cUKmqpej4oa67QbALmChsJbfxTgTffRiL3iUehVhR9wQmWgPua66jPuAYeL1K2pYYjbNoT
 ```
 
-> [完整使用文档](../cli/usage.md#solana-authorize-nonce-account)
+> [完整使用文档](../cli/usage.md#solvia-authorize-nonce-account)
 
 ## 支持持久Nonce的其他命令
 
@@ -143,9 +143,9 @@ solana authorize-non-account non-keypair.json nonce-authority.json
 
 到目前为止，以下子命令已接受此处理
 
-- [`支付`](../cli/usage.md#solana-pay)
-- [`委托质押`](../cli/usage.md#solana-delegate-stake)
-- [`停用质押`](../cli/usage.md#solana-deactivate-stake)
+- [`支付`](../cli/usage.md#solvia-pay)
+- [`委托质押`](../cli/usage.md#solvia-delegate-stake)
+- [`停用质押`](../cli/usage.md#solvia-deactivate-stake)
 
 ### 使用持久Nonce的支付示例
 
@@ -156,9 +156,9 @@ solana authorize-non-account non-keypair.json nonce-authority.json
 首先，我们需要为Alice、Alice的none和Bob准备一些账户
 
 ```bash
-$ solana-keygen new -o alice.json
-$ solana-keygen new -o nonce.json
-$ solana-keygen new -o bob.json
+$ solvia-keygen new -o alice.json
+$ solvia-keygen new -o nonce.json
+$ solvia-keygen new -o bob.json
 ```
 
 #### - Alice账户充值
@@ -166,7 +166,7 @@ $ solana-keygen new -o bob.json
 Alice 需要一些资产来创建一个 nonce 帐户并发送给 Bob。 空投一些SOL给她
 
 ```bash
-$ solana airdrop -k alice.json 10
+$ solvia airdrop -k alice.json 10
 10 SOL
 ```
 
@@ -177,7 +177,7 @@ $ solana airdrop -k alice.json 10
 > 这里没有单独的 [nonce authority](#nonce-authority) 被使用，所以 `alice.json` 对nonce 帐户拥有完全的权限
 
 ```bash
-$ solana create-nonce-account -k alice.json nonce.json 1
+$ solvia create-nonce-account -k alice.json nonce.json 1
 3KPZr96BTsL3hqera9up82KAU462Gz31xjqJ6ehuAjF935Yf8i1kmfEbo6SVbNaACKE5z6gySrNjVRvmS8DcPuwV
 ```
 
@@ -186,8 +186,8 @@ $ solana create-nonce-account -k alice.json nonce.json 1
 Alice 试图为支付给 Bob，但签名需要太长时间。 指定的区块哈希已经过期，导致交易失败
 
 ```bash
-$ solana pay -k alice.json --blockhash expiredDTaxfagttWjQweib42b6ZHADSx94Tw8gHx3W7 bob.json 1
-[2020-01-02T18:48:28.462911000Z ERROR solana_cli::cli] Io(Custom { kind: Other, error: "Transaction \"33gQQaoPc9jWePMvDAeyJpcnSPiGUAdtVg8zREWv4GiKjkcGNufgpcbFyRKRrA25NkgjZySEeKue5rawyeH5TzsV\" failed: None" })
+$ solvia pay -k alice.json --blockhash expiredDTaxfagttWjQweib42b6ZHADSx94Tw8gHx3W7 bob.json 1
+[2020-01-02T18:48:28.462911000Z ERROR solvia_cli::cli] Io(Custom { kind: Other, error: "Transaction \"33gQQaoPc9jWePMvDAeyJpcnSPiGUAdtVg8zREWv4GiKjkcGNufgpcbFyRKRrA25NkgjZySEeKue5rawyeH5TzsV\" failed: None" })
 Error: Io(Custom { kind: Other, error: "Transaction \"33gQQaoPc9jWePMvDAeyJpcnSPiGUAdtVg8zREWv4GiKjkcGNufgpcbFyRKRrA25NkgjZySEeKue5rawyeH5TzsV\" failed: None" })
 ```
 
@@ -198,14 +198,14 @@ Alice 重试交易，这次指定她的nonce账户和存储在那里的区块哈
 > 记住，`alice.json` 是这个示例中的 [nonce 授权](#nonce-authority)
 
 ```bash
-$ solana nonce-account nonce.json
+$ solvia nonce-account nonce.json
 balance: 1 SOL
 minimum balance required: 0.00136416 SOL
 nonce: F7vmkY3DTaxfagttWjQweib42b6ZHADSx94Tw8gHx3W7
 ```
 
 ```bash
-$ solana pay -k alice.json --blockhash F7vmkY3DTaxfagtWjQweib42b6ZHADSx94Tw8gHx3W7 --nonce nonce.json bob.json 1
+$ solvia pay -k alice.json --blockhash F7vmkY3DTaxfagtWjQweib42b6ZHADSx94Tw8gHx3W7 --nonce nonce.json bob.json 1
 HR1368UKHVZyenmH7yVz5sBAijV6XAPeWbEiXEGVYQorRMcoijeNAbzZqEZiH8cDB8tk65ckeegFjK8dHwNFgQ
 ```
 
@@ -214,12 +214,12 @@ HR1368UKHVZyenmH7yVz5sBAijV6XAPeWbEiXEGVYQorRMcoijeNAbzZqEZiH8cDB8tk65ckeegFjK8d
 交易成功！ Bob 从 Alice 那里收到1个SOL，并且Alice存储的nonce更新到了一个新的值
 
 ```bash
-$ solana balance -k bob.json
+$ solvia balance -k bob.json
 1 SOL
 ```
 
 ```bash
-$ solana nonce-account nonce.json
+$ solvia nonce-account nonce.json
 balance: 1 SOL
 minimum balance required: 0.00136416 SOL
 nonce: 6bjroqDcZgTv6Vavhqf81oBHTv3aMnX19UTB51YhAZnN

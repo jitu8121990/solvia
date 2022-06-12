@@ -50,7 +50,7 @@ using the `no-entrypoint` feature.
 ## Project Dependencies
 
 At a minimum, Solvia Rust programs must pull in the
-[solana-program](https://crates.io/crates/solana-program) crate.
+[solvia-program](https://crates.io/crates/solvia-program) crate.
 
 Solvia BPF programs have some [restrictions](#restrictions) that may prevent the
 inclusion of some crates as dependencies or require special handling.
@@ -73,7 +73,7 @@ First setup the environment:
 
 - Install the latest Rust stable from https://rustup.rs/
 - Install the latest Solvia command-line tools from
-  https://docs.solana.com/cli/install-solvia-cli-tools
+  https://docs.solvia.com/cli/install-solvia-cli-tools
 
 The normal cargo build is available for building programs against your host
 machine which can be used for unit testing:
@@ -97,7 +97,7 @@ exercising program functions directly.
 
 To help facilitate testing in an environment that more closely matches a live
 cluster, developers can use the
-[`program-test`](https://crates.io/crates/solana-program-test) crate. The
+[`program-test`](https://crates.io/crates/solvia-program-test) crate. The
 `program-test` crate starts up a local instance of the runtime and allows tests
 to send multiple transactions while keeping state for the duration of the test.
 
@@ -149,7 +149,7 @@ pub type ProcessInstruction =
 ```
 
 Refer to [helloworld's use of the
-entrypoint](https://github.com/solana-labs/example-helloworld/blob/1e049076e10be8712b1a725d2d886ce0cd036b2e/src/program-rust/src/lib.rs#L19)
+entrypoint](https://github.com/solvia-labs/example-helloworld/blob/1e049076e10be8712b1a725d2d886ce0cd036b2e/src/program-rust/src/lib.rs#L19)
 as an example of how things fit together.
 
 ### Parameter Deserialization
@@ -319,13 +319,13 @@ Rust's `panic!`, `assert!`, and internal panic results are printed to the
 [program logs](debugging.md#logging) by default.
 
 ```
-INFO  solana_runtime::message_processor] Finalized account CGLhHSuWsp1gT4B7MY2KACqp9RUwQRhcUFfVSuxpSajZ
-INFO  solana_runtime::message_processor] Call BPF program CGLhHSuWsp1gT4B7MY2KACqp9RUwQRhcUFfVSuxpSajZ
-INFO  solana_runtime::message_processor] Program log: Panicked at: 'assertion failed: `(left == right)`
+INFO  solvia_runtime::message_processor] Finalized account CGLhHSuWsp1gT4B7MY2KACqp9RUwQRhcUFfVSuxpSajZ
+INFO  solvia_runtime::message_processor] Call BPF program CGLhHSuWsp1gT4B7MY2KACqp9RUwQRhcUFfVSuxpSajZ
+INFO  solvia_runtime::message_processor] Program log: Panicked at: 'assertion failed: `(left == right)`
       left: `1`,
      right: `2`', rust/panic/src/lib.rs:22:5
-INFO  solana_runtime::message_processor] BPF program consumed 5453 of 200000 units
-INFO  solana_runtime::message_processor] BPF program CGLhHSuWsp1gT4B7MY2KACqp9RUwQRhcUFfVSuxpSajZ failed: BPF program panicked
+INFO  solvia_runtime::message_processor] BPF program consumed 5453 of 200000 units
+INFO  solvia_runtime::message_processor] BPF program CGLhHSuWsp1gT4B7MY2KACqp9RUwQRhcUFfVSuxpSajZ failed: BPF program panicked
 ```
 
 ### Custom Panic Handler
@@ -347,8 +347,8 @@ Then provide a custom implementation of the panic handler:
 #[cfg(all(feature = "custom-panic", target_arch = "bpf"))]
 #[no_mangle]
 fn custom_panic(info: &core::panic::PanicInfo<'_>) {
-    solana_program::msg!("program custom panic enabled");
-    solana_program::msg!("{}", info);
+    solvia_program::msg!("program custom panic enabled");
+    solvia_program::msg!("{}", info);
 }
 ```
 

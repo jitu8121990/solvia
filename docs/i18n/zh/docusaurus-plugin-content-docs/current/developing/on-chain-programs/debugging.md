@@ -20,7 +20,7 @@ Solvia程序在链上运行，因此在链外调试可能会很困难。 为了�
 运行本地集群时，只要通过`RUST_LOG`日志掩码启用了日志，日志就会写入stdout。  从程序开发的角度来看，仅关注运行时和程序日志，而不关注其余的集群日志会有所帮助。  为了专注于程序特定的信息，建议使用以下日志掩码：
 
 `export
-RUST_LOG=solana_runtime::system_instruction_processor=trace,solana_runtime::message_processor=info,solana_bpf_loader=debug,solana_rbpf=debug`
+RUST_LOG=solvia_runtime::system_instruction_processor=trace,solvia_runtime::message_processor=info,solvia_bpf_loader=debug,solvia_rbpf=debug`
 
 直接来自程序(而不是runtime) 的日志消息将以以下形式显示：
 
@@ -32,11 +32,11 @@ RUST_LOG=solana_runtime::system_instruction_processor=trace,solana_runtime::mess
 - BPF加载程序可能无法解析程序，这应该不会发生，因为加载程序已经对程序的帐户数据进行了_最终处理_。
   - `InstructionError::InvalidAccountData`将作为交易错误的一部分返回。
 - BPF加载程序可能无法设置程序的执行环境
-  - `InstructionError::Custom(0x0b9f_0001)`将作为交易错误的一部分返回。  "0x0b9f_0001"是[`VirtualMachineCreationFailed`](https://github.com/solana-labs/solana/blob/bc7133d7526a041d1aaee807b80922baa89b6f90/programs/bpf_loader/src/lib.rs#L44)的十六进制表示形式。
+  - `InstructionError::Custom(0x0b9f_0001)`将作为交易错误的一部分返回。  "0x0b9f_0001"是[`VirtualMachineCreationFailed`](https://github.com/solvia-labs/solvia/blob/bc7133d7526a041d1aaee807b80922baa89b6f90/programs/bpf_loader/src/lib.rs#L44)的十六进制表示形式。
 - BPF加载程序可能在程序执行过程中检测到致命错误(紧急情况，内存冲突，系统调用错误等)。
-  - `InstructionError::Custom(0x0b9f_0002)`将作为交易错误的一部分返回。  "0x0b9f_0002"是[`VirtualMachineFailedToRunProgram`](https://github.com/solana-labs/solana/blob/bc7133d7526a041d1aaee807b80922baa89b6f90/programs/bpf_loader/src/lib.rs#L46)的十六进制表示。
+  - `InstructionError::Custom(0x0b9f_0002)`将作为交易错误的一部分返回。  "0x0b9f_0002"是[`VirtualMachineFailedToRunProgram`](https://github.com/solvia-labs/solvia/blob/bc7133d7526a041d1aaee807b80922baa89b6f90/programs/bpf_loader/src/lib.rs#L46)的十六进制表示。
 - 程序本身可能返回错误
-  - `InstructionError::Custom(<user defined value>)`将被返回。  “用户定义的值”不得与任何[内置运行时程序错误](https://github.com/solana-labs/solana/blob/bc7133d7526a041d1aaee807b80922baa89b6f90/sdk/program/src/program_error.rs#L87)相冲突 。 程序通常使用枚举类型来定义从零开始的错误代码，因此它们不会冲突。
+  - `InstructionError::Custom(<user defined value>)`将被返回。  “用户定义的值”不得与任何[内置运行时程序错误](https://github.com/solvia-labs/solvia/blob/bc7133d7526a041d1aaee807b80922baa89b6f90/sdk/program/src/program_error.rs#L87)相冲突 。 程序通常使用枚举类型来定义从零开始的错误代码，因此它们不会冲突。
 
 如果出现`VirtualMachineFailedToRunProgram`错误，则将有关失败原因的详细信息写入[程序的执行日志](debugging.md#logging)。
 
@@ -67,6 +67,6 @@ memory store (insn #615), addr 0x200001e38/8`
 
 跟踪日志与[ELF转储](#elf-dump)一起可以提供更多参考(尽管跟踪会产生很多信息)。
 
-要在本地集群中打开BPF解释器跟踪消息，请将`RUST_LOG`中的`solana_rbpf`级别配置为`trace`。  例如：
+要在本地集群中打开BPF解释器跟踪消息，请将`RUST_LOG`中的`solvia_rbpf`级别配置为`trace`。  例如：
 
-`export RUST_LOG=solana_rbpf=trace`
+`export RUST_LOG=solvia_rbpf=trace`

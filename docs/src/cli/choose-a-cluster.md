@@ -11,17 +11,17 @@ You can check what cluster the Solvia command-line tool (CLI) is currently targe
 running the following command:
 
 ```bash
-solana config get
+solvia config get
 ```
 
-Use `solana config set` command to target a particular cluster. After setting
+Use `solvia config set` command to target a particular cluster. After setting
 a cluster target, any future subcommands will send/receive information from that
 cluster.
 
 For example to target the Devnet cluster, run:
 
 ```bash
-solana config set --url https://api.devnet.solana.com
+solvia config set --url https://api.devnet.solvia.com
 ```
 
 ## Ensure Versions Match
@@ -31,13 +31,13 @@ matches the software version running on the cluster. To get the locally-installe
 CLI version, run:
 
 ```bash
-solana --version
+solvia --version
 ```
 
 To get the cluster version, run:
 
 ```bash
-solana cluster-version
+solvia cluster-version
 ```
 
 Ensure the local CLI version is greater than or equal to the cluster version.

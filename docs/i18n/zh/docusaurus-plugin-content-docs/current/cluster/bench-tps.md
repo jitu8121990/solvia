@@ -6,16 +6,16 @@ Solvia git 仓库涵盖了配置本地测试网可能用到的所有脚本。 �
 
 对于上述的四种变型，您可能需要最新的 Rust 工具链和 Solvia 源代码：
 
-首先，请设置 Solvia [README](https://github.com/solana-labs/solana#1-install-rustc-cargo-and-rustfmt) 中提到的 Rust、Cargo 和系统安装包。
+首先，请设置 Solvia [README](https://github.com/solvia-labs/solvia#1-install-rustc-cargo-and-rustfmt) 中提到的 Rust、Cargo 和系统安装包。
 
 请检查 github 代码：
 
 ```bash
-git clone https://github.com/solana-labs/solana.git
-cd solana
+git clone https://github.com/solvia-labs/solvia.git
+cd solvia
 ```
 
-演示代码有时在我们添加新的低级功能时会失败，所以如果这是您第一次运行 demo，为了提高成功的概率，请在继续操作之前先查看 [latest release](https://github.com/solana-labs/solana/releases) ：
+演示代码有时在我们添加新的低级功能时会失败，所以如果这是您第一次运行 demo，为了提高成功的概率，请在继续操作之前先查看 [latest release](https://github.com/solvia-labs/solvia/releases) ：
 
 ```bash
 TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
@@ -70,8 +70,8 @@ NDEBUG=1 ./multinode-demo/validator-x.sh
 
 ```bash
 ./fetch-perf-libs.sh
-NDEBUG=1 SOLANA_CUDA=1 ./multinode-demo/bootstrap-validator.sh
-NDEBUG=1 SOLANA_CUDA=1 ./multinode-demo/validator.sh
+NDEBUG=1 solvia_CUDA=1 ./multinode-demo/bootstrap-validator.sh
+NDEBUG=1 solvia_CUDA=1 ./multinode-demo/validator.sh
 ```
 
 ### 测试网客户端演示
@@ -92,21 +92,21 @@ NDEBUG=1 ./multinode-demo/bench-tps.sh # runs against localhost by default
 
 例如：
 
-- 要在任意位置启用 `info` 以及只能在 solana::banking_stage 模块中启用 `debug` ：
+- 要在任意位置启用 `info` 以及只能在 solvia::banking_stage 模块中启用 `debug` ：
 
   ```bash
-export RUST_LOG=solana=info,solana::banking_stage=debug
+export RUST_LOG=solvia=info,solvia::banking_stage=debug
   ```
 
 - 启用 BPF 程序日志记录：
 
   ```bash
-export RUST_LOG=solana_bpf_loader=trace
+export RUST_LOG=solvia_bpf_loader=trace
   ```
 
 一般来说，我们正在使用 `debug` 处理不经常的调试消息， `trace` 处理可能频繁的消息， `info` 用于与性能相关的记录。
 
-您也可以通过 GDB 附加到一个运行过程。 领导者进程命名为 _solana-validator_:
+您也可以通过 GDB 附加到一个运行过程。 领导者进程命名为 _solvia-validator_:
 
 ```bash
 sudo gdb
@@ -122,7 +122,7 @@ thread apply all bt
 在此示例中，我们将把客户端连接到公共测试网。 在测试网上运行验证器，您需要打开 udp 端口 `8000-1000`。
 
 ```bash
-NDEBUG=1 ./multinode-demo/bench-tps.sh --entrypoint devnet.solana.com:8001 --faucet devnet.solana.com:9900 --duration 60 --tx_count 50
+NDEBUG=1 ./multinode-demo/bench-tps.sh --entrypoint devnet.solvia.com:8001 --faucet devnet.solvia.com:9900 --duration 60 --tx_count 50
 ```
 
-您可以在 [metrics dashboard](https://metrics.solana.com:3000/d/monitor/cluster-telemetry?var-testnet=devnet) 上观察客户端交易的影响
+您可以在 [metrics dashboard](https://metrics.solvia.com:3000/d/monitor/cluster-telemetry?var-testnet=devnet) 上观察客户端交易的影响

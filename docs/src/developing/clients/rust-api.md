@@ -3,29 +3,29 @@ title: Rust API
 ---
 
 Solvia's Rust crates are [published to crates.io][crates.io] and can be found
-[on docs.rs with the "solana-" prefix][docs.rs].
+[on docs.rs with the "solvia-" prefix][docs.rs].
 
-[crates.io]: https://crates.io/search?q=solana-
-[docs.rs]: https://docs.rs/releases/search?query=solana-
+[crates.io]: https://crates.io/search?q=solvia-
+[docs.rs]: https://docs.rs/releases/search?query=solvia-
 
 Some important crates:
 
-- [`solana-program`] &mdash; Imported by programs running on Solvia, compiled
+- [`solvia-program`] &mdash; Imported by programs running on Solvia, compiled
   to BPF. This crate contains many fundamental data types and is re-exported from
-  [`solana-sdk`], which cannot be imported from a Solvia program.
+  [`solvia-sdk`], which cannot be imported from a Solvia program.
 
-- [`solana-sdk`] &mdash; The basic off-chain SDK, it re-exports
-  [`solana-program`] and adds more APIs on top of that. Most Solvia programs
+- [`solvia-sdk`] &mdash; The basic off-chain SDK, it re-exports
+  [`solvia-program`] and adds more APIs on top of that. Most Solvia programs
   that do not run on-chain will import this.
 
-- [`solana-client`] &mdash; For interacting with a Solvia node via the
+- [`solvia-client`] &mdash; For interacting with a Solvia node via the
   [JSON RPC API](jsonrpc-api).
 
-- [`solana-clap-utils`] &mdash; Routines for setting up a CLI, using [`clap`],
+- [`solvia-clap-utils`] &mdash; Routines for setting up a CLI, using [`clap`],
   as used by the main Solvia CLI.
 
-[`solana-program`]: https://docs.rs/solana-program
-[`solana-sdk`]: https://docs.rs/solana-sdk
-[`solana-client`]: https://docs.rs/solana-client
-[`solana-clap-utils`]: https://docs.rs/solana-clap-utils
+[`solvia-program`]: https://docs.rs/solvia-program
+[`solvia-sdk`]: https://docs.rs/solvia-sdk
+[`solvia-client`]: https://docs.rs/solvia-client
+[`solvia-clap-utils`]: https://docs.rs/solvia-clap-utils
 [`clap`]: https://docs.rs/clap

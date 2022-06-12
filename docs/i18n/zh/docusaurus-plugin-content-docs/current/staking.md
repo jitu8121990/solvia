@@ -40,14 +40,14 @@ Solvia 是一个能够质押的权益证明(POS) 网络，这意味着任何 SOL
 创建了一个质押帐户后，您需要将 SOL 委托给一个验证节点。  您可以到以下几个地方查看目前正在运行网络的验证节点的信息。 Solvia Labs 团队和 Solvia 基金会不推荐任何特定的验证节点。
 
 主网 Beta 验证节点在 Solvia 论坛对各自及其服务进行了介绍：
- - https://forums.solana.com/t/validator-informationthad
+ - https://forums.solvia.com/t/validator-informationthad
 
 Solviabeach.io 网站是由网络的一个验证节点 Staking Facilities 开发和维护的。  它提供了整个网络的一些高级图形信息，以及每个验证节点的列表和它们最新的性能统计。
- - https://solanabeach.io
+ - https://solviabeach.io
 
 如您想查看出块的统计数据，请使用 Solvia 命令行工具：
- - `solana 验证节点`
- - `solana 出块`
+ - `solvia 验证节点`
+ - `solvia 出块`
 
 Solvia 团队不对如何解释该信息提出任何建议。  潜在的委托者应当尽职尽责。
 

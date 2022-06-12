@@ -5,7 +5,7 @@ title: JSON RPC API
 Solvia nodes accept HTTP requests using the [JSON-RPC 2.0](https://www.jsonrpc.org/specification) specification.
 
 To interact with a Solvia node inside a JavaScript application, use the
-[solana-web3.js](https://github.com/solvia-labs/solvia-web3.js) library, which
+[solvia-web3.js](https://github.com/solvia-labs/solvia-web3.js) library, which
 gives a convenient interface for the RPC methods.
 
 ## RPC HTTP Endpoint
@@ -205,7 +205,7 @@ health-check mechanism for use by load balancers or other network
 infrastructure. This request will always return a HTTP 200 OK response with a body of
 "ok", "behind" or "unknown" based on the following conditions:
 
-1. If one or more `--known-validator` arguments are provided to `solana-validator`, "ok" is returned
+1. If one or more `--known-validator` arguments are provided to `solvia-validator`, "ok" is returned
    when the node has within `HEALTH_CHECK_SLOT_DISTANCE` slots of the highest
    known validator, otherwise "behind". "unknown" is returned when no slot
    information from known validators is not yet available.
@@ -359,8 +359,8 @@ Result:
 
 ### getBlock
 
-**NEW: This method is only available in solana-core v1.7 or newer. Please use
-[getConfirmedBlock](jsonrpc-api.md#getconfirmedblock) for solana-core v1.6**
+**NEW: This method is only available in solvia-core v1.7 or newer. Please use
+[getConfirmedBlock](jsonrpc-api.md#getconfirmedblock) for solvia-core v1.6**
 
 Returns identity and transaction information about a confirmed block in the ledger
 
@@ -764,8 +764,8 @@ Result:
 
 ### getBlocks
 
-**NEW: This method is only available in solana-core v1.7 or newer. Please use
-[getConfirmedBlocks](jsonrpc-api.md#getconfirmedblocks) for solana-core v1.6**
+**NEW: This method is only available in solvia-core v1.7 or newer. Please use
+[getConfirmedBlocks](jsonrpc-api.md#getconfirmedblocks) for solvia-core v1.6**
 
 Returns a list of confirmed blocks between two slots
 
@@ -798,8 +798,8 @@ Result:
 
 ### getBlocksWithLimit
 
-**NEW: This method is only available in solana-core v1.7 or newer. Please use
-[getConfirmedBlocksWithLimit](jsonrpc-api.md#getconfirmedblockswithlimit) for solana-core v1.6**
+**NEW: This method is only available in solvia-core v1.7 or newer. Please use
+[getConfirmedBlocksWithLimit](jsonrpc-api.md#getconfirmedblockswithlimit) for solvia-core v1.6**
 
 Returns a list of confirmed blocks starting at the given slot
 
@@ -1198,7 +1198,7 @@ Result:
 Returns the current health of the node.
 
 If one or more `--known-validator` arguments are provided to
-`solana-validator`, "ok" is returned when the node has within
+`solvia-validator`, "ok" is returned when the node has within
 `HEALTH_CHECK_SLOT_DISTANCE` slots of the highest known validator, otherwise
 an error is returned.  "ok" is always returned if no known validators are
 provided.
@@ -2066,8 +2066,8 @@ Result when the node has no snapshot:
 
 ### getSignaturesForAddress
 
-**NEW: This method is only available in solana-core v1.7 or newer. Please use
-[getConfirmedSignaturesForAddress2](jsonrpc-api.md#getconfirmedsignaturesforaddress2) for solana-core v1.6**
+**NEW: This method is only available in solvia-core v1.7 or newer. Please use
+[getConfirmedSignaturesForAddress2](jsonrpc-api.md#getconfirmedsignaturesforaddress2) for solvia-core v1.6**
 
 
 Returns confirmed signatures for transactions involving an
@@ -2817,8 +2817,8 @@ Result:
 
 ### getTransaction
 
-**NEW: This method is only available in solana-core v1.7 or newer. Please use
-[getConfirmedTransaction](jsonrpc-api.md#getconfirmedtransaction) for solana-core v1.6**
+**NEW: This method is only available in solvia-core v1.7 or newer. Please use
+[getConfirmedTransaction](jsonrpc-api.md#getconfirmedtransaction) for solvia-core v1.6**
 
 Returns transaction details for a confirmed transaction
 
@@ -2838,7 +2838,7 @@ Returns transaction details for a confirmed transaction
   - `transaction: <object|[string,encoding]>` - [Transaction](#transaction-structure) object, either in JSON format or encoded binary data, depending on encoding parameter
   - `blockTime: <i64 | null>` - estimated production time, as Unix timestamp (seconds since the Unix epoch) of when the transaction was processed. null if not available
   - `meta: <object | null>` - transaction status metadata object:
-    - `err: <object | null>` - Error if transaction failed, null if transaction succeeded. [TransactionError definitions](https://docs.rs/solana-sdk/VERSION_FOR_DOCS_RS/solana_sdk/transaction/enum.TransactionError.html)
+    - `err: <object | null>` - Error if transaction failed, null if transaction succeeded. [TransactionError definitions](https://docs.rs/solvia-sdk/VERSION_FOR_DOCS_RS/solvia_sdk/transaction/enum.TransactionError.html)
     - `fee: <u64>` - fee this transaction was charged, as u64 integer
     - `preBalances: <array>` - array of u64 account balances from before the transaction was processed
     - `postBalances: <array>` - array of u64 account balances after the transaction was processed
@@ -3024,7 +3024,7 @@ Result:
 
 ### getVersion
 
-Returns the current solana versions running on the node
+Returns the current solvia versions running on the node
 
 #### Parameters:
 
@@ -3034,7 +3034,7 @@ None
 
 The result field will be a JSON object with the following fields:
 
-- `solana-core`, software version of solana-core
+- `solvia-core`, software version of solvia-core
 - `feature-set`, unique identifier of the current software's feature set
 
 #### Example:
@@ -3048,7 +3048,7 @@ curl http://localhost:8899 -X POST -H "Content-Type: application/json" -d '
 
 Result:
 ```json
-{"jsonrpc":"2.0","result":{"solana-core": "1.8.11"},"id":1}
+{"jsonrpc":"2.0","result":{"solvia-core": "1.8.11"},"id":1}
 ```
 
 ### getVoteAccounts
@@ -4160,7 +4160,7 @@ Response:
 ### getConfirmedBlock
 
 **DEPRECATED: Please use [getBlock](jsonrpc-api.md#getblock) instead**
-This method is expected to be removed in solana-core v2.0
+This method is expected to be removed in solvia-core v2.0
 
 Returns identity and transaction information about a confirmed block in the ledger
 
@@ -4354,7 +4354,7 @@ For more details on returned data:
 ### getConfirmedBlocks
 
 **DEPRECATED: Please use [getBlocks](jsonrpc-api.md#getblocks) instead**
-This method is expected to be removed in solana-core v2.0
+This method is expected to be removed in solvia-core v2.0
 
 Returns a list of confirmed blocks between two slots
 
@@ -4388,7 +4388,7 @@ Result:
 ### getConfirmedBlocksWithLimit
 
 **DEPRECATED: Please use [getBlocksWithLimit](jsonrpc-api.md#getblockswithlimit) instead**
-This method is expected to be removed in solana-core v2.0
+This method is expected to be removed in solvia-core v2.0
 
 Returns a list of confirmed blocks starting at the given slot
 
@@ -4420,7 +4420,7 @@ Result:
 ### getConfirmedSignaturesForAddress2
 
 **DEPRECATED: Please use [getSignaturesForAddress](jsonrpc-api.md#getsignaturesforaddress) instead**
-This method is expected to be removed in solana-core v2.0
+This method is expected to be removed in solvia-core v2.0
 
 Returns confirmed signatures for transactions involving an
 address backwards in time from the provided signature or most recent confirmed block
@@ -4482,7 +4482,7 @@ Result:
 ### getConfirmedTransaction
 
 **DEPRECATED: Please use [getTransaction](jsonrpc-api.md#gettransaction) instead**
-This method is expected to be removed in solana-core v2.0
+This method is expected to be removed in solvia-core v2.0
 
 Returns transaction details for a confirmed transaction
 
@@ -4502,7 +4502,7 @@ Returns transaction details for a confirmed transaction
   - `transaction: <object|[string,encoding]>` - [Transaction](#transaction-structure) object, either in JSON format or encoded binary data, depending on encoding parameter
   - `blockTime: <i64 | null>` - estimated production time, as Unix timestamp (seconds since the Unix epoch) of when the transaction was processed. null if not available
   - `meta: <object | null>` - transaction status metadata object:
-    - `err: <object | null>` - Error if transaction failed, null if transaction succeeded. [TransactionError definitions](https://docs.rs/solana-sdk/VERSION_FOR_DOCS_RS/solana_sdk/transaction/enum.TransactionError.html)
+    - `err: <object | null>` - Error if transaction failed, null if transaction succeeded. [TransactionError definitions](https://docs.rs/solvia-sdk/VERSION_FOR_DOCS_RS/solvia_sdk/transaction/enum.TransactionError.html)
     - `fee: <u64>` - fee this transaction was charged, as u64 integer
     - `preBalances: <array>` - array of u64 account balances from before the transaction was processed
     - `postBalances: <array>` - array of u64 account balances after the transaction was processed

@@ -137,5 +137,5 @@ re-created for the address to be used again.
 
 #### Viewing Stake Accounts
 
-Stake account details can be viewed on the [Solvia Explorer](http://explorer.solana.com/accounts)
+Stake account details can be viewed on the [Solvia Explorer](http://explorer.solvia.com/accounts)
 by copying and pasting an account address into the search bar.

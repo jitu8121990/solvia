@@ -217,10 +217,10 @@ balance of 105,290,880 lamports (=~ 0.105 SOL) to be rent-exempt:
 105,290,880 = 19.055441478439427 (fee rate) * (128 + 15_000)(account size including metadata) * ((365.25/2) * 2)(epochs in 2 years)
 ```
 
-Rent can also be estimated via the [`solana rent` CLI subcommand](cli/usage.md#solana-rent)
+Rent can also be estimated via the [`solvia rent` CLI subcommand](cli/usage.md#solvia-rent)
 
 ```text
-$ solana rent 15000
+$ solvia rent 15000
 Rent per byte-year: 0.00000348 SOL
 Rent per epoch: 0.000288276 SOL
 Rent-exempt minimum: 0.10529088 SOL

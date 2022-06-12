@@ -20,10 +20,10 @@ title: 验证节点
 
 - TPU之外提升FetchStage和BroadcastStage
 - BankForks更名为Banktree
-- TPU转移到名为solana-tpu的新工具箱。
+- TPU转移到名为solvia-tpu的新工具箱。
 - TPU的BankingStage吸收了ReplayStage
 - TVU消失了
 - 新的修复阶段吸收了碎片获取阶段和修复请求
-- JSONRPC服务是可选的-用于调试。 相反，它应该是单独的`solana-blockstreamer`可执行文件的一部分。
+- JSONRPC服务是可选的-用于调试。 相反，它应该是单独的`solvia-blockstreamer`可执行文件的一部分。
 - 新的MulticastStage吸收了RetransmitStage的重发部分
 - Blockstore下游的MulticastStage

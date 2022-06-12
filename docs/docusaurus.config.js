@@ -32,7 +32,7 @@ module.exports = {
       },
       items: [
         {
-          href: "https://spl.solana.com",
+          href: "https://spl.solvia.com",
           label: "Program Library »",
           position: "left",
         },

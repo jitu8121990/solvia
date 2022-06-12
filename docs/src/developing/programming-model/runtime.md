@@ -123,9 +123,9 @@ To determine which features are activated use the [Solvia command-line
 tools](cli/install-solvia-cli-tools.md):
 
 ```bash
-solana feature status
+solvia feature status
 ```
 
 If you encounter problems first ensure that the Solvia tools version you are
-using match the version returned by `solana cluster-version`. If they do not
+using match the version returned by `solvia cluster-version`. If they do not
 match [install the correct tool suite](cli/install-solvia-cli-tools.md).

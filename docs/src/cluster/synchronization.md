@@ -24,5 +24,5 @@ Proof of History is not a consensus mechanism, but it is used to improve the per
 
 ## More on Proof of History
 
-- [water clock analogy](https://medium.com/solana-labs/proof-of-history-explained-by-a-water-clock-e682183417b8)
-- [Proof of History overview](https://medium.com/solana-labs/proof-of-history-a-clock-for-blockchain-cf47a61a9274)
+- [water clock analogy](https://medium.com/solvia-labs/proof-of-history-explained-by-a-water-clock-e682183417b8)
+- [Proof of History overview](https://medium.com/solvia-labs/proof-of-history-a-clock-for-blockchain-cf47a61a9274)

@@ -569,7 +569,7 @@ public class PubkeyValidator
 
 ## Supporting the SPL Token Standard
 
-[SPL Token](https://spl.solana.com/token) is the standard for wrapped/synthetic
+[SPL Token](https://spl.solvia.com/token) is the standard for wrapped/synthetic
 token creation and exchange on the Solvia blockchain.
 
 The SPL Token workflow is similar to that of native SOL tokens, but there are a
@@ -697,7 +697,7 @@ Signature: 3R6tsog17QM8KfzbcbdP4aoMfwgo6hBggJDVy7dZPVmH2xbCWjEj31JKD53NzMrf25ChF
 Since each `(wallet, mint)` pair requires a separate account on chain. It is
 recommended that the addresses for these accounts be derived from SOL deposit
 wallets using the
-[Associated Token Account](https://spl.solana.com/associated-token-account) (ATA)
+[Associated Token Account](https://spl.solvia.com/associated-token-account) (ATA)
 scheme and that _only_ deposits from ATA addresses be accepted.
 
 Monitoring for deposit transactions should follow the [block polling](#poll-for-blocks)
@@ -719,7 +719,7 @@ the exchange should check the address as
 [described above](#validating-user-supplied-account-addresses-for-withdrawals).
 Additionally this address must be owned by the System Program and have no account data.  If the address has no SOL balance, user confirmation should be obtained before proceeding with the withdrawal.  All other withdrawal addresses must be rejected.
 
-From the withdrawal address, the [Associated Token Account](https://spl.solana.com/associated-token-account)
+From the withdrawal address, the [Associated Token Account](https://spl.solvia.com/associated-token-account)
 (ATA) for the correct mint is derived and the transfer issued to that account via a
 [TransferChecked](https://github.com/solvia-labs/solvia-program-library/blob/fc0d6a2db79bd6499f04b9be7ead0c400283845e/token/program/src/instruction.rs#L268)
 instruction. Note that it is possible that the ATA address does not yet exist, at which point the
@@ -739,7 +739,7 @@ $ spl-token transfer --fund-recipient <exchange token account> <withdrawal amoun
 
 For regulatory compliance reasons, an SPL Token issuing entity may optionally
 choose to hold "Freeze Authority" over all accounts created in association with
-its mint. This allows them to [freeze](https://spl.solana.com/token#freezing-accounts)
+its mint. This allows them to [freeze](https://spl.solvia.com/token#freezing-accounts)
 the assets in a given account at will, rendering the account unusable until thawed.
 If this feature is in use, the freeze authority's pubkey will be registered in
 the SPL Token's mint account.

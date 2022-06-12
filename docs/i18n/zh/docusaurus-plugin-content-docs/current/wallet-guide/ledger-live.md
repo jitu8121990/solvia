@@ -4,7 +4,7 @@ title: Ledger Nano S 和 Nano X
 
 本文档描述了如何设置 [Ledger Nano S](https://shop.ledger.com/products/ledger-nano-s)、[Ledger Nano X](https://shop.ledger.com/pages/ledger-nano-x) 与 [Ledger Live](https://www.ledger.com/ledger-live) 软件。
 
-一旦下面显示的设置步骤完成，Solvia 应用程序将安装在您的 Nano 设备上，用户有几个方法来 [使用 Nano 来与 Solvia 网络交互](#interact-with-the-solana-network)。
+一旦下面显示的设置步骤完成，Solvia 应用程序将安装在您的 Nano 设备上，用户有几个方法来 [使用 Nano 来与 Solvia 网络交互](#interact-with-the-solvia-network)。
 
 ## 准备工作
 

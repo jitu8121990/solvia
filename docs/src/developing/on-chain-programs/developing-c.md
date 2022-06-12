@@ -18,14 +18,14 @@ The `makefile` should contain the following:
 
 ```bash
 OUT_DIR := <path to place to resulting shared object>
-include ~/.local/share/solana/install/active_release/bin/sdk/bpf/c/bpf.mk
+include ~/.local/share/solvia/install/active_release/bin/sdk/bpf/c/bpf.mk
 ```
 
 The bpf-sdk may not be in the exact place specified above but if you setup your
 environment per [How to Build](#how-to-build) then it should be.
 
 Take a look at
-[helloworld](https://github.com/solana-labs/example-helloworld/tree/master/src/program-c)
+[helloworld](https://github.com/solvia-labs/example-helloworld/tree/master/src/program-c)
 for an example of a C program.
 
 ## How to Build
@@ -34,7 +34,7 @@ First setup the environment:
 
 - Install the latest Rust stable from https://rustup.rs
 - Install the latest Solvia command-line tools from
-  https://docs.solana.com/cli/install-solvia-cli-tools
+  https://docs.solvia.com/cli/install-solvia-cli-tools
 
 Then build using make:
 
@@ -50,7 +50,7 @@ Build](#how-to-build)].
 
 To add tests, create a new file next to your source file named `test_<program name>.c` and populate it with criterion test cases. For an example see the
 [helloworld C
-tests](https://github.com/solana-labs/example-helloworld/blob/master/src/program-c/src/helloworld/test_helloworld.c)
+tests](https://github.com/solvia-labs/example-helloworld/blob/master/src/program-c/src/helloworld/test_helloworld.c)
 or the [Criterion docs](https://criterion.readthedocs.io/en/master) for
 information on how to write a test case.
 
@@ -79,19 +79,19 @@ parameters (program id, accounts, instruction data, etc...). To deserialize the
 parameters each loader contains its own [helper function](#Serialization).
 
 Refer to [helloworld's use of the
-entrypoint](https://github.com/solana-labs/example-helloworld/blob/bc0b25c0ccebeff44df9760ddb97011558b7d234/src/program-c/src/helloworld/helloworld.c#L37)
+entrypoint](https://github.com/solvia-labs/example-helloworld/blob/bc0b25c0ccebeff44df9760ddb97011558b7d234/src/program-c/src/helloworld/helloworld.c#L37)
 as an example of how things fit together.
 
 ### Serialization
 
 Refer to [helloworld's use of the deserialization
-function](https://github.com/solana-labs/example-helloworld/blob/bc0b25c0ccebeff44df9760ddb97011558b7d234/src/program-c/src/helloworld/helloworld.c#L43).
+function](https://github.com/solvia-labs/example-helloworld/blob/bc0b25c0ccebeff44df9760ddb97011558b7d234/src/program-c/src/helloworld/helloworld.c#L43).
 
 Each loader provides a helper function that deserializes the program's input
 parameters into C types:
 
 - [BPF Loader
-  deserialization](https://github.com/solvia-labs/solvia/blob/d2ee9db2143859fa5dc26b15ee6da9c25cc0429c/sdk/bpf/c/inc/solana_sdk.h#L304)
+  deserialization](https://github.com/solvia-labs/solvia/blob/d2ee9db2143859fa5dc26b15ee6da9c25cc0429c/sdk/bpf/c/inc/solvia_sdk.h#L304)
 - [BPF Loader deprecated
   deserialization](https://github.com/solvia-labs/solvia/blob/8415c22b593f164020adc7afe782e8041d756ddf/sdk/bpf/c/inc/deserialize_deprecated.h#L25)
 
@@ -110,7 +110,7 @@ Details on how the loader serializes the program inputs can be found in the
 ## Data Types
 
 The loader's deserialization helper function populates the
-[SolParameters](https://github.com/solvia-labs/solvia/blob/8415c22b593f164020adc7afe782e8041d756ddf/sdk/bpf/c/inc/solana_sdk.h#L276)
+[SolParameters](https://github.com/solvia-labs/solvia/blob/8415c22b593f164020adc7afe782e8041d756ddf/sdk/bpf/c/inc/solvia_sdk.h#L276)
 structure:
 
 ```c
@@ -129,7 +129,7 @@ typedef struct {
 
 'ka' is an ordered array of the accounts referenced by the instruction and
 represented as a
-[SolAccountInfo](https://github.com/solvia-labs/solvia/blob/8415c22b593f164020adc7afe782e8041d756ddf/sdk/bpf/c/inc/solana_sdk.h#L173)
+[SolAccountInfo](https://github.com/solvia-labs/solvia/blob/8415c22b593f164020adc7afe782e8041d756ddf/sdk/bpf/c/inc/solvia_sdk.h#L173)
 structures. An account's place in the array signifies its meaning, for example,
 when transferring lamports an instruction may define the first account as the
 source and the second as the destination.
@@ -154,7 +154,7 @@ processed.
 ## Heap
 
 C programs can allocate memory via the system call
-[`calloc`](https://github.com/solvia-labs/solvia/blob/c3d2d2134c93001566e1e56f691582f379b5ae55/sdk/bpf/c/inc/solana_sdk.h#L245)
+[`calloc`](https://github.com/solvia-labs/solvia/blob/c3d2d2134c93001566e1e56f691582f379b5ae55/sdk/bpf/c/inc/solvia_sdk.h#L245)
 or implement their own heap on top of the 32KB heap region starting at virtual
 address x300000000. The heap region is also used by `calloc` so if a program
 implements their own heap it should not also call `calloc`.
@@ -164,8 +164,8 @@ implements their own heap it should not also call `calloc`.
 The runtime provides two system calls that take data and log it to the program
 logs.
 
-- [`sol_log(const char*)`](https://github.com/solvia-labs/solvia/blob/d2ee9db2143859fa5dc26b15ee6da9c25cc0429c/sdk/bpf/c/inc/solana_sdk.h#L128)
-- [`sol_log_64(uint64_t, uint64_t, uint64_t, uint64_t, uint64_t)`](https://github.com/solvia-labs/solvia/blob/d2ee9db2143859fa5dc26b15ee6da9c25cc0429c/sdk/bpf/c/inc/solana_sdk.h#L134)
+- [`sol_log(const char*)`](https://github.com/solvia-labs/solvia/blob/d2ee9db2143859fa5dc26b15ee6da9c25cc0429c/sdk/bpf/c/inc/solvia_sdk.h#L128)
+- [`sol_log_64(uint64_t, uint64_t, uint64_t, uint64_t, uint64_t)`](https://github.com/solvia-labs/solvia/blob/d2ee9db2143859fa5dc26b15ee6da9c25cc0429c/sdk/bpf/c/inc/solvia_sdk.h#L134)
 
 The [debugging](debugging.md#logging) section has more information about working
 with program logs.
@@ -173,7 +173,7 @@ with program logs.
 ## Compute Budget
 
 Use the system call
-[`sol_log_compute_units()`](https://github.com/solvia-labs/solvia/blob/d3a3a7548c857f26ec2cb10e270da72d373020ec/sdk/bpf/c/inc/solana_sdk.h#L140)
+[`sol_log_compute_units()`](https://github.com/solvia-labs/solvia/blob/d3a3a7548c857f26ec2cb10e270da72d373020ec/sdk/bpf/c/inc/solvia_sdk.h#L140)
 to log a message containing the remaining number of compute units the program
 may consume before execution is halted
 

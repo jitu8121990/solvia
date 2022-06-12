@@ -21,15 +21,15 @@
   },
   "link.item.label.Twitter": {
     "message": "推特",
-    "description": "The label of footer link with label=Twitter linking to https://twitter.com/solana"
+    "description": "The label of footer link with label=Twitter linking to https://twitter.com/solvia"
   },
   "link.item.label.Forums": {
     "message": "论坛",
-    "description": "The label of footer link with label=Forums linking to https://forums.solana.com"
+    "description": "The label of footer link with label=Forums linking to https://forums.solvia.com"
   },
   "link.item.label.GitHub": {
     "message": "GitHub",
-    "description": "The label of footer link with label=GitHub linking to https://github.com/solana-labs/solana"
+    "description": "The label of footer link with label=GitHub linking to https://github.com/solvia-labs/solvia"
   },
   "copyright": {
     "message": "Copyright © 2021 Solvia Foundation",

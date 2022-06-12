@@ -13,7 +13,7 @@ title: 集群软件安装和更新
 支持的平台上最简单的安装方法。
 
 ```bash
-$ curl -sSf https://raw.githubusercontent.com/solana-labs/solana/v1.0.0/install/solana-install-init.sh | sh
+$ curl -sSf https://raw.githubusercontent.com/solvia-labs/solvia/v1.0.0/install/solvia-install-init.sh | sh
 ```
 
 这个脚本将检查github以获取最新的标签版本，并从那里下载并运行`Solvia-install-init`二进制文件。
@@ -21,8 +21,8 @@ $ curl -sSf https://raw.githubusercontent.com/solana-labs/solana/v1.0.0/install/
 如果在安装过程中需要指定额外的参数，可以使用下面的shell语法。
 
 ```bash
-$ init_args=.... # arguments for `solana-install-init ...`
-$ curl -sSf https://raw.githubusercontent.com/solana-labs/solana/v1.0.0/install/solana-install-init.sh | sh -s - ${init_args}
+$ init_args=.... # arguments for `solvia-install-init ...`
+$ curl -sSf https://raw.githubusercontent.com/solvia-labs/solvia/v1.0.0/install/solvia-install-init.sh | sh -s - ${init_args}
 ```
 
 ### 从Github发布的版本中获取并运行一个预构建的安装程序。
@@ -30,9 +30,9 @@ $ curl -sSf https://raw.githubusercontent.com/solana-labs/solana/v1.0.0/install/
 通过知名的发布URL，可以获得支持平台的预构建二进制文件。
 
 ```bash
-$ curl -o solana-install-init https://github.com/solana-labs/solana/releases/download/v1.0.0/solana-install-init-x86_64-apple-darwin
-$ chmod +x ./solana-install-init
-$ ./solana-install-init --help
+$ curl -o solvia-install-init https://github.com/solvia-labs/solvia/releases/download/v1.0.0/solvia-install-init-x86_64-apple-darwin
+$ chmod +x ./solvia-install-init
+$ ./solvia-install-init --help
 ```
 
 ### 从源代码构建并运行安装程序。
@@ -40,8 +40,8 @@ $ ./solana-install-init --help
 如果预制的二进制文件不能用于特定的平台，那么从源码中构建安装程序始终是一种选择。
 
 ```bash
-$ git clone https://github.com/solana-labs/solana.git
-$ cd solana/install
+$ git clone https://github.com/solvia-labs/solvia.git
+$ cd solvia/install
 $ cargo run -- --help
 ```
 
@@ -50,17 +50,17 @@ $ cargo run -- --help
 如果Solvia发布的tarball\(由`ci/publish-tarball.sh`创建\) 已经上传到一个可公开访问的URL中，以下命令将部署更新。
 
 ```bash
-$ solana-keygen new -o update-manifest.json  # <-- only generated once, the public key is shared with users
-$ solana-install deploy http://example.com/path/to/solana-release.tar.bz2 update-manifest.json
+$ solvia-keygen new -o update-manifest.json  # <-- only generated once, the public key is shared with users
+$ solvia-install deploy http://example.com/path/to/solvia-release.tar.bz2 update-manifest.json
 ```
 
 ### 运行一个自动更新的验证器节点。
 
 ```bash
-$ solana-install init --pubkey 92DMonmBYXwEMHJ99c9ceRSpAmk9v6i3RdvDdXaVcrfj  # <-- pubkey is obtained from whoever is deploying the updates
-$ export PATH=~/.local/share/solana-install/bin:$PATH
-$ solana-keygen ...  # <-- runs the latest solana-keygen
-$ solana-install run solana-validator ...  # <-- runs a validator, restarting it as necesary when an update is applied
+$ solvia-install init --pubkey 92DMonmBYXwEMHJ99c9ceRSpAmk9v6i3RdvDdXaVcrfj  # <-- pubkey is obtained from whoever is deploying the updates
+$ export PATH=~/.local/share/solvia-install/bin:$PATH
+$ solvia-keygen ...  # <-- runs the latest solvia-keygen
+$ solvia-install run solvia-validator ...  # <-- runs a validator, restarting it as necesary when an update is applied
 ```
 
 ## 链上更新清单
@@ -70,7 +70,7 @@ $ solana-install run solana-validator ...  # <-- runs a validator, restarting it
 更新的压缩包本身在其他地方托管，不在链上，可以从指定的 `download_url` 获取。
 
 ```text
-use solana_sdk::signature::Signature;
+use solvia_sdk::signature::Signature;
 
 /// Information required to download and apply a given update
 pub struct UpdateManifest {
@@ -87,9 +87,9 @@ pub struct SignedUpdateManifest {
 }
 ```
 
-请注意，`manifest` 字段本身包含一个相应的签名\(`manifest_signature`\)，以防止 `solana-install` 工具和 Solvia 集群 RPC API 之间的中间人攻击。
+请注意，`manifest` 字段本身包含一个相应的签名\(`manifest_signature`\)，以防止 `solvia-install` 工具和 Solvia 集群 RPC API 之间的中间人攻击。
 
-为了防止回滚攻击，`solana-install` 将拒绝安装比当前安装的 `timestamp_secs` 更早的更新。
+为了防止回滚攻击，`solvia-install` 将拒绝安装比当前安装的 `timestamp_secs` 更早的更新。
 
 ## 版本存档内容
 
@@ -101,7 +101,7 @@ pub struct SignedUpdateManifest {
 
 - `/bin/` -- 发行版中包含可用程序的目录。
 
-  `solana-install` 会将这个目录以符号链接的方式连接到
+  `solvia-install` 会将这个目录以符号链接的方式连接到
 
   `~/.local/share/Solvia-install/bin` 供 `PATH` 环境变量使用。
 
@@ -109,31 +109,31 @@ pub struct SignedUpdateManifest {
 
 - `...` -- 允许有任何其他文件和目录。
 
-## solana-install 工具
+## solvia-install 工具
 
-用户使用 `solana-install` 工具来安装和更新他们的集群软件。
+用户使用 `solvia-install` 工具来安装和更新他们的集群软件。
 
 它在用户的主目录中管理以下文件和目录： ~/. config/Solvia/install/config. yml -- 用户配置和当前集群软件的信息。
 
 - `~/.config/Solvia/install/config.yml` - 用户配置和当前安装的软件版本信息。
-- `~/.local/share/solana/install/bin` - 当前版本的符号链接， 例如，`~/.local/share/Solvia-update/<update-pubkey>-<manifest_signature>/bin`。
+- `~/.local/share/solvia/install/bin` - 当前版本的符号链接， 例如，`~/.local/share/Solvia-update/<update-pubkey>-<manifest_signature>/bin`。
 - `~/.local/share/Solvia/install/releases/<download_sha256>/` - 版本内容。
 
 ### 命令行界面
 
 ```text
-solana-install 0.16.0
-The solana cluster software installer
+solvia-install 0.16.0
+The solvia cluster software installer
 
 USAGE:
-    solana-install [OPTIONS] <SUBCOMMAND>
+    solvia-install [OPTIONS] <SUBCOMMAND>
 
 FLAGS:
     -h, --help       Prints help information
     -V, --version    Prints version information
 
 OPTIONS:
-    -c, --config <PATH>    Configuration file to use [default: .../Library/Preferences/solana/install.yml]
+    -c, --config <PATH>    Configuration file to use [default: .../Library/Preferences/solvia/install.yml]
 
 SUBCOMMANDS:
     deploy    deploys a new update
@@ -145,27 +145,27 @@ SUBCOMMANDS:
 ```
 
 ```text
-solana-install-init
+solvia-install-init
 initializes a new installation
 
 USAGE:
-    solana-install init [OPTIONS]
+    solvia-install init [OPTIONS]
 
 FLAGS:
     -h, --help    Prints help information
 
 OPTIONS:
-    -d, --data_dir <PATH>    Directory to store install data [default: .../Library/Application Support/solana]
-    -u, --url <URL>          JSON RPC URL for the solana cluster [default: http://api.devnet.solana.com]
+    -d, --data_dir <PATH>    Directory to store install data [default: .../Library/Application Support/solvia]
+    -u, --url <URL>          JSON RPC URL for the solvia cluster [default: http://api.devnet.solvia.com]
     -p, --pubkey <PUBKEY>    Public key of the update manifest [default: 9XX329sPuskWhH4DQh6k16c87dHKhXLBZTL3Gxmve8Gp]
 ```
 
 ```text
-solana-install info
+solvia-install info
 displays information about the current installation
 
 USAGE:
-    solana-install info [FLAGS]
+    solvia-install info [FLAGS]
 
 FLAGS:
     -h, --help     Prints help information
@@ -173,37 +173,37 @@ FLAGS:
 ```
 
 ```text
-solana-install deploy
+solvia-install deploy
 deploys a new update
 
 USAGE:
-    solana-install deploy <download_url> <update_manifest_keypair>
+    solvia-install deploy <download_url> <update_manifest_keypair>
 
 FLAGS:
     -h, --help    Prints help information
 
 ARGS:
-    <download_url>               URL to the solana release archive
+    <download_url>               URL to the solvia release archive
     <update_manifest_keypair>    Keypair file for the update manifest (/path/to/keypair.json)
 ```
 
 ```text
-solana-install update
+solvia-install update
 checks for an update, and if available downloads and applies it
 
 USAGE:
-    solana-install update
+    solvia-install update
 
 FLAGS:
     -h, --help    Prints help information
 ```
 
 ```text
-solana-install run
+solvia-install run
 Runs a program while periodically checking and applying software updates
 
 USAGE:
-    solana-install run <program_name> [program_arguments]...
+    solvia-install run <program_name> [program_arguments]...
 
 FLAGS:
     -h, --help    Prints help information

@@ -10,7 +10,7 @@ public RPC endpoints currently available and recommended for each public cluster
 
 #### Endpoint
 
-- `https://api.devnet.solana.com` - single Solvia-hosted api node; rate-limited
+- `https://api.devnet.solvia.com` - single Solvia-hosted api node; rate-limited
 
 #### Rate Limits
 
@@ -24,7 +24,7 @@ public RPC endpoints currently available and recommended for each public cluster
 
 #### Endpoint
 
-- `https://api.testnet.solana.com` - single Solvia-hosted api node; rate-limited
+- `https://api.testnet.solvia.com` - single Solvia-hosted api node; rate-limited
 
 #### Rate Limits
 
@@ -38,8 +38,8 @@ public RPC endpoints currently available and recommended for each public cluster
 
 #### Endpoints
 
-- `https://api.mainnet-beta.solana.com` - Solvia-hosted api node cluster, backed by a load balancer; rate-limited
-- `https://solana-api.projectserum.com` - Project Serum-hosted api node
+- `https://api.mainnet-beta.solvia.com` - Solvia-hosted api node cluster, backed by a load balancer; rate-limited
+- `https://solvia-api.projectserum.com` - Project Serum-hosted api node
 
 #### Rate Limits
 

@@ -72,11 +72,11 @@ Major releases:
 
 ### Rust Crates
 
-- [`solana-sdk`](https://docs.rs/solana-sdk/) - Rust SDK for creating transactions and parsing account state
-- [`solana-program`](https://docs.rs/solana-program/) - Rust SDK for writing programs
-- [`solana-client`](https://docs.rs/solana-client/) - Rust client for connecting to RPC API
-- [`solana-cli-config`](https://docs.rs/solana-cli-config/) - Rust client for managing Solvia CLI config files
-- [`solana-accountsdb-plugin-interface`](https://docs.rs/solana-accountsdb-plugin-interface/) - Rust interface for developing Solvia AccountsDb plugins.
+- [`solvia-sdk`](https://docs.rs/solvia-sdk/) - Rust SDK for creating transactions and parsing account state
+- [`solvia-program`](https://docs.rs/solvia-program/) - Rust SDK for writing programs
+- [`solvia-client`](https://docs.rs/solvia-client/) - Rust client for connecting to RPC API
+- [`solvia-cli-config`](https://docs.rs/solvia-cli-config/) - Rust client for managing Solvia CLI config files
+- [`solvia-accountsdb-plugin-interface`](https://docs.rs/solvia-accountsdb-plugin-interface/) - Rust interface for developing Solvia AccountsDb plugins.
 
 Patch releases:
 
